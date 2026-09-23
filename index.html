@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مطعم فول وفلافل - MAZEN MOHAMED</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #2c3e50, #f39c12);
+            color: #fff;
+            margin: 0;
+            padding: 10px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #f1c40f;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto 15px auto;
+        }
+
+        /* منطقة استراحة وزبائن الكرتون */
+        .shop-area {
+            position: relative;
+            background: #34495e;
+            border: 4px solid #f39c12;
+            border-radius: 15px;
+            height: 150px;
+            max-width: 700px;
+            margin: 0 auto 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .customer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: walkIn 0.5s ease-out;
+        }
+
+        @keyframes walkIn {
+            from { transform: translateX(200px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .customer-avatar {
+            font-size: 50px;
+        }
+
+        .order-bubble {
+            background: #fff;
+            color: #333;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: absolute;
+            top: 10px;
+            border: 2px solid #e74c3c;
+            max-width: 80%;
+        }
+
+        /* طاولة تجهيز الساندوتش */
+        .counter-area {
+            background: #fff;
+            color: #333;
+            max-width: 700px;
+            margin: 0 auto 15px auto;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border: 3px solid #d35400;
+        }
+
+        .sandwich-plate {
+            background: #ecf0f1;
+            border: 2px dashed #bdc3c7;
+            border-radius: 10px;
+            min-height: 50px;
+            padding: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .ingredients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .ingredient-btn {
+            background: #f39c12;
+            color: #fff;
+            border: none;
+            padding: 10px 5px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .ingredient-btn:active {
+            transform: scale(0.95);
+        }
+        .ingredient-btn:hover {
+            background: #d35400;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-main {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .btn-main:hover { background: #219653; }
+
+        .btn-clear {
+            background: #c0392b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-clear:hover { background: #a93226; }
+
+        #gameMessage {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🥙 مطعم فول وفلافل 🥙</h1>
+    
+    <div class="stats-bar">
+        <span>💰 الأرباح: <span id="moneyScore">0</span> جنية</span>
+        <span>⭐ الطلبات الناجحة: <span id="successCount">0</span></span>
+    </div>
+
+    <!-- شاشة المطعم والزبون الكرتوني -->
+    <div class="shop-area" id="shopArea">
+        <div id="customerContainer"></div>
+    </div>
+
+    <!-- طاولة التحضير والمكونات -->
+    <div class="counter-area">
+        <div style="font-weight: bold; margin-bottom: 5px; color: #d35400;">🍽️ الساندوتش الحالي في الطاسة:</div>
+        <div class="sandwich-plate" id="sandwichPlate">فاضي.. ابدأ باختيار العيش والمكونات!</div>
+
+        <div style="font-weight: bold; margin-bottom: 8px; color: #34495e;">اختر المكونات بدقة:</div>
+        <div class="ingredients-grid">
+            <button class="ingredient-btn" onclick="addIngredient('🥖 عيش فينو')">🥖 عيش فينو</button>
+            <button class="ingredient-btn" onclick="addIngredient('🫓 عيش شامي')">🫓 عيش شامي</button>
+            <button class="ingredient-btn" onclick="addIngredient('🧆 فلافل')">🧆 فلافل</button>
+            <button class="ingredient-btn" onclick="addIngredient('🥣 فول')">🥣 فول</button>
+            <button class="ingredient-btn" onclick="addIngredient('🌿 فول بخلطة')">🌿 فول بخلطة</button>
+            <button class="ingredient-btn" onclick="addIngredient('🍆 بابا غنوج')">🍆 بابا غنوج</button>
+            <button class="ingredient-btn" onclick="addIngredient('🍆 باذنجان')">🍆 باذنجان</button>
+            <button class="ingredient-btn" onclick="addIngredient('🥘 مسقعة')">🥘 مسقعة</button>
+            <button class="ingredient-btn" onclick="addIngredient('🥒 مخلل')">🥒 مخلل</button>
+            <button class="ingredient-btn" onclick="addIngredient('🤍 طحينة')">🤍 طحينة</button>
+            <button class="ingredient-btn" onclick="addIngredient('🌿 شبت وبقدونس')">🌿 شبت وبقدونس</button>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn-main" onclick="serveOrder()">🚀 تسليم الساندوتش</button>
+            <button class="btn-clear" onclick="clearPlate()">🗑️ مسح الطاسة</button>
+        </div>
+    </div>
+
+    <div id="gameMessage"></div>
+
+    <script>
+        const availableItems = [
+            '🥖 عيش فينو', '🫓 عيش شامي', 
+            '🧆 فلافل', '🥣 فول', '🌿 فول بخلطة', 
+            '🍆 بابا غنوج', '🍆 باذنجان', '🥘 مسقعة', 
+            '🥒 مخلل', '🤍 طحينة', '🌿 شبت وبقدونس'
+        ];
+
+        const avatars = ['👦', '👧', '👨', '👩', '👴', '🧔', '🧑‍🎓'];
+
+        let currentMoney = 0;
+        let successOrders = 0;
+        let currentCustomerOrder = [];
+        let currentSandwich = [];
+        let currentAvatar = '👦';
+
+        function spawnCustomer() {
+            currentSandwich = [];
+            updatePlateDisplay();
+            
+            currentAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+            
+            let orderSize = Math.floor(Math.random() * 3) + 2;
+            currentCustomerOrder = [];
+            
+            let bread = Math.random() > 0.5 ? '🥖 عيش فينو' : '🫓 عيش شامي';
+            currentCustomerOrder.push(bread);
+
+            while(currentCustomerOrder.length < orderSize) {
+                let randomIng = availableItems[Math.floor(Math.random() * availableItems.length)];
+                if(!currentCustomerOrder.includes(randomIng)) {
+                    currentCustomerOrder.push(randomIng);
+                }
+            }
+
+            const customerContainer = document.getElementById('customerContainer');
+            customerContainer.innerHTML = `
+                <div class="customer">
+                    <div class="order-bubble">أنا طالب: ${currentCustomerOrder.join(' + ')}</div>
+                    <div class="customer-avatar">${currentAvatar}</div>
+                </div>
+            `;
+            document.getElementById('gameMessage').textContent = "الزبون وصل! جهز الساندوتش المطلوب بسرعة.";
+            document.getElementById('gameMessage').style.color = "#f1c40f";
+        }
+
+        function addIngredient(item) {
+            currentSandwich.push(item);
+            updatePlateDisplay();
+        }
+
+        function clearPlate() {
+            currentSandwich = [];
+            updatePlateDisplay();
+        }
+
+        function updatePlateDisplay() {
+            const plate = document.getElementById('sandwichPlate');
+            if(currentSandwich.length === 0) {
+                plate.textContent = "فاضي.. ابدأ باختيار العيش والمكونات!";
+            } else {
+                plate.textContent = currentSandwich.join(' ➔ ');
+            }
+        }
+
+        function serveOrder() {
+            if(currentSandwich.length === 0) {
+                document.getElementById('gameMessage').textContent = "⚠️ الطاسة فاضية يا شيف! حط مكونات الأول.";
+                document.getElementById('gameMessage').style.color = "#e74c3c";
+                return;
+            }
+
+            let isMatch = true;
+            if(currentSandwich.length !== currentCustomerOrder.length) {
+                isMatch = false;
+            } else {
+                for(let item of currentCustomerOrder) {
+                    if(!currentSandwich.includes(item)) {
+                        isMatch = false;
+                        break;
+                    }
+                }
+            }
+
+            const msg = document.getElementById('gameMessage');
+            if(isMatch) {
+                currentMoney += 15;
+                successOrders++;
+                document.getElementById('moneyScore').textContent = currentMoney;
+                document.getElementById('successCount').textContent = successOrders;
+                msg.textContent = "🎉 تسلم إيدك يا شيف مازن! الزبون أكل وفرح ودفع الحساب.";
+                msg.style.color = "#2ecc71";
+                
+                setTimeout(spawnCustomer, 1200);
+            } else {
+                msg.textContent = "❌ للأسف الطلب غلط! الزبون زعل ومشي.. ركز في الطلب كويس.";
+                msg.style.color = "#e74c3c";
+                setTimeout(spawnCustomer, 1500);
+            }
+        }
+
+        window.onload = function() {
+            spawnCustomer();
+        };
+    </script>
+</body>
+              </html>

@@ -17,7 +17,12 @@ html,body{
   height:100%;
   overflow:hidden;
   font-family:Arial,Tahoma,sans-serif;
-  background:#f4dfb5;
+  background:#f3dfb8;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
 }
 
 body{
@@ -25,39 +30,43 @@ body{
   flex-direction:column;
 }
 
+/* ================= HEADER ================= */
+
 header{
-  height:54px;
-  min-height:54px;
-  background:#8b4513;
+  height:52px;
+  min-height:52px;
+  background:#873f12;
   color:white;
   display:flex;
   align-items:center;
   justify-content:space-around;
+  gap:4px;
   padding:4px;
   box-shadow:0 2px 8px #0005;
-  z-index:5;
 }
 
 header h1{
   margin:0;
-  font-size:19px;
+  font-size:18px;
 }
 
 .stat{
-  background:#ffffff22;
-  border-radius:10px;
-  padding:5px 8px;
+  background:#ffffff20;
+  border-radius:9px;
+  padding:4px 8px;
   text-align:center;
-  font-size:11px;
+  font-size:10px;
 }
 
 .stat b{
   display:block;
-  font-size:14px;
+  font-size:13px;
 }
 
+/* ================= GAME ================= */
+
 .game{
-  height:calc(100dvh - 54px);
+  height:calc(100dvh - 52px);
   padding:5px;
   display:flex;
   flex-direction:column;
@@ -65,11 +74,11 @@ header h1{
   min-height:0;
 }
 
-/* الزباين */
+/* ================= CUSTOMERS ================= */
 
 .customers{
-  height:24%;
-  min-height:125px;
+  height:23%;
+  min-height:115px;
   display:flex;
   gap:5px;
   overflow:hidden;
@@ -78,28 +87,33 @@ header h1{
 
 .customer{
   flex:1;
-  max-width:150px;
+  max-width:155px;
   min-width:0;
-  background:#fff;
-  border:2px solid #d3a15b;
-  border-radius:13px;
+  background:white;
+  border:2px solid #c58b43;
+  border-radius:12px;
   padding:4px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:space-between;
   box-shadow:0 2px 5px #0002;
-  position:relative;
-  animation:arrive .35s ease;
+  animation:arrive .3s ease;
 }
 
 @keyframes arrive{
-  from{transform:translateY(-30px);opacity:0}
-  to{transform:translateY(0);opacity:1}
+  from{
+    transform:translateY(-30px);
+    opacity:0;
+  }
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
 }
 
-.customer.done{
-  animation:leave .4s forwards;
+.customer.leaving{
+  animation:leave .35s forwards;
 }
 
 @keyframes leave{
@@ -111,56 +125,81 @@ header h1{
 
 .person{
   width:38px;
-  height:48px;
+  height:45px;
   position:relative;
-  margin-top:1px;
 }
 
 .head{
-  width:25px;
-  height:25px;
-  border-radius:50%;
+  width:24px;
+  height:24px;
   background:#c8895b;
+  border-radius:50%;
   position:absolute;
-  top:0;
   left:7px;
+  top:0;
 }
 
 .body{
   width:38px;
-  height:25px;
+  height:23px;
+  background:#2871a9;
   border-radius:18px 18px 5px 5px;
-  background:#2768a8;
   position:absolute;
   bottom:0;
 }
 
 .order{
   width:100%;
+  min-height:30px;
   text-align:center;
+  color:#512d15;
+  font-size:11px;
   font-weight:bold;
-  color:#5a3015;
-  font-size:12px;
-  line-height:16px;
+  line-height:15px;
 }
 
-.order .amount{
+.order .red{
   color:#c0392b;
-  font-size:14px;
+  font-size:13px;
 }
 
-.customer button{
+.progress{
+  width:92%;
+  height:6px;
+  background:#ddd;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress div{
+  height:100%;
+  background:#27ae60;
+  width:0%;
+  transition:.2s;
+}
+
+.deliver{
   width:100%;
   border:0;
-  border-radius:8px;
+  border-radius:7px;
   background:#27ae60;
   color:white;
   font-weight:bold;
-  padding:5px 2px;
-  font-size:11px;
+  padding:5px;
+  font-size:10px;
 }
 
-/* المطبخ */
+.deliver.ready{
+  background:#168a48;
+  animation:pulse .7s infinite alternate;
+}
+
+@keyframes pulse{
+  from{transform:scale(1)}
+  to{transform:scale(1.03)}
+}
+
+/* ================= KITCHEN ================= */
 
 .kitchen{
   flex:1;
@@ -179,9 +218,9 @@ header h1{
 }
 
 .section{
-  background:#fff7e8;
+  background:#fff8ea;
   border:2px solid #b87932;
-  border-radius:12px;
+  border-radius:11px;
   padding:4px;
   min-width:0;
   min-height:0;
@@ -191,12 +230,12 @@ header h1{
 
 .section h2{
   margin:0 0 3px;
-  text-align:center;
-  background:#8b4513;
-  color:#fff;
-  border-radius:8px;
-  font-size:15px;
   padding:4px;
+  background:#873f12;
+  color:white;
+  text-align:center;
+  border-radius:7px;
+  font-size:14px;
   flex-shrink:0;
 }
 
@@ -210,128 +249,124 @@ header h1{
 }
 
 .food{
-  border:1px solid #c99958;
-  border-radius:8px;
-  background:#fff;
+  border:1px solid #c79855;
+  border-radius:7px;
+  background:white;
+  color:#4d2c16;
+  padding:2px;
+  min-width:0;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  min-width:0;
-  padding:2px;
   font-size:9px;
   font-weight:bold;
-  color:#4d2c16;
   position:relative;
-  overflow:hidden;
 }
 
 .food:active{
-  transform:scale(.94);
+  transform:scale(.93);
+}
+
+.food.disabled{
+  opacity:.45;
 }
 
 .icon{
-  font-size:29px;
-  line-height:30px;
+  font-size:27px;
+  line-height:28px;
 }
 
 .price{
   color:#d35400;
-  font-size:9px;
+  font-size:8px;
+  text-align:center;
 }
 
-/* المغرفة */
+/* ================= LADLE ================= */
 
-.ladle{
+.ladleBox{
   position:absolute;
-  top:-2px;
-  left:50%;
-  transform:translateX(-50%);
-  width:18px;
-  height:34px;
-  z-index:4;
-  pointer-events:none;
+  top:1px;
+  right:3px;
+  width:24px;
+  height:36px;
 }
 
-.ladle-handle{
+.ladleHandle{
   position:absolute;
   width:5px;
-  height:22px;
+  height:23px;
   background:#777;
-  left:7px;
   top:0;
-  border-radius:4px;
+  left:10px;
+  border-radius:5px;
 }
 
-.ladle-head{
+.ladleHead{
   position:absolute;
-  width:18px;
+  width:20px;
   height:13px;
   background:#777;
-  border-radius:50%;
   bottom:0;
+  left:2px;
+  border-radius:50%;
 }
 
-/* قرطاس */
+/* ================= BAG ================= */
 
 .bag{
-  width:39px;
-  height:30px;
-  background:#d99b48;
+  width:40px;
+  height:31px;
+  background:#d99a47;
   clip-path:polygon(10% 0,90% 0,78% 100%,22% 100%);
-  position:relative;
   display:flex;
-  justify-content:center;
   align-items:flex-end;
+  justify-content:center;
 }
 
 .bag span{
   color:white;
-  font-size:11px;
   font-weight:bold;
+  font-size:12px;
   margin-bottom:4px;
 }
 
-.bulk-active{
-  outline:3px solid #27ae60;
-}
-
-/* السجل */
+/* ================= BOTTOM ================= */
 
 .bottom{
-  height:29%;
-  min-height:125px;
-  background:#fff7e8;
+  height:25%;
+  min-height:105px;
+  background:#fff8ea;
   border:2px solid #b87932;
-  border-radius:12px;
+  border-radius:11px;
   padding:4px;
   display:flex;
   gap:5px;
 }
 
 .tools{
-  width:55%;
+  width:58%;
   display:grid;
   grid-template-columns:repeat(6,1fr);
   gap:3px;
 }
 
 .tool{
-  background:#fff;
-  border:1px solid #c99958;
+  background:white;
+  border:1px solid #c79855;
   border-radius:7px;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
   font-size:8px;
   font-weight:bold;
-  color:#4d2c16;
 }
 
 .tool .icon{
-  font-size:25px;
-  line-height:26px;
+  font-size:23px;
+  line-height:24px;
 }
 
 .upgrades{
@@ -343,12 +378,12 @@ header h1{
 
 .upgrades h3{
   margin:0;
-  text-align:center;
-  font-size:12px;
-  background:#8b4513;
-  color:white;
   padding:3px;
-  border-radius:7px;
+  border-radius:6px;
+  background:#873f12;
+  color:white;
+  text-align:center;
+  font-size:11px;
 }
 
 .upgrade{
@@ -357,90 +392,83 @@ header h1{
   border-radius:7px;
   background:#e67e22;
   color:white;
-  font-size:9px;
   font-weight:bold;
+  font-size:8px;
 }
 
-/* مؤثر الغرف */
+/* ================= EFFECTS ================= */
 
-.scoop{
+.effect{
   position:fixed;
   pointer-events:none;
-  font-size:34px;
-  z-index:99;
-  animation:scoop .55s ease-out forwards;
+  z-index:100;
+  font-size:32px;
+  animation:effect .55s ease-out forwards;
 }
 
-@keyframes scoop{
+@keyframes effect{
   0%{
     opacity:1;
-    transform:translate(0,0) rotate(0);
+    transform:translateY(0) scale(1);
   }
   100%{
     opacity:0;
-    transform:translate(0,-75px) rotate(25deg);
+    transform:translateY(-70px) scale(1.2);
   }
 }
 
 .toast{
   position:fixed;
+  z-index:200;
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
   background:#222e;
   color:white;
-  padding:10px 18px;
+  padding:9px 16px;
   border-radius:12px;
   font-weight:bold;
-  z-index:200;
+  font-size:14px;
   animation:toast .9s forwards;
 }
 
 @keyframes toast{
-  0%{opacity:0;transform:translate(-50%,-30%)}
-  15%{opacity:1;transform:translate(-50%,-50%)}
+  0%{opacity:0}
+  15%{opacity:1}
   80%{opacity:1}
   100%{opacity:0}
 }
 
-/* شاشات صغيرة جدا */
+/* ================= SMALL SCREEN ================= */
 
 @media(max-height:650px){
+
   header{
-    height:46px;
-    min-height:46px;
+    height:45px;
+    min-height:45px;
   }
 
   .game{
-    height:calc(100dvh - 46px);
+    height:calc(100dvh - 45px);
   }
 
   .customers{
-    min-height:105px;
+    min-height:100px;
   }
 
   .person{
     transform:scale(.8);
     transform-origin:center top;
-    height:40px;
+    height:38px;
   }
 
   .icon{
-    font-size:24px;
-    line-height:25px;
-  }
-
-  .food .icon{
-    font-size:25px;
-  }
-
-  .bottom{
-    min-height:105px;
+    font-size:23px;
+    line-height:24px;
   }
 
   .tool .icon{
-    font-size:21px;
-    line-height:22px;
+    font-size:20px;
   }
 }
 </style>
@@ -449,6 +477,7 @@ header h1{
 <body>
 
 <header>
+
   <h1>🍽️ مطعمي الشعبي</h1>
 
   <div class="stat">
@@ -470,155 +499,168 @@ header h1{
     🏆
     <b id="level">1</b>
   </div>
+
 </header>
 
 <div class="game">
 
+  <!-- ================= CUSTOMERS ================= -->
+
   <div class="customers" id="customers"></div>
+
+  <!-- ================= KITCHEN ================= -->
 
   <div class="kitchen">
 
     <div class="sections">
 
-      <!-- السايب -->
+      <!-- ================= BULK ================= -->
+
       <div class="section">
+
         <h2>🥣 سايب</h2>
 
         <div class="food-grid">
 
-          <button class="food" onclick="bulkFood('foul')">
-            <div class="ladle">
-              <div class="ladle-handle"></div>
-              <div class="ladle-head"></div>
+          <!-- فول -->
+          <button class="food" onclick="clickFood('bulk','foul')">
+
+            <div class="ladleBox">
+              <div class="ladleHandle"></div>
+              <div class="ladleHead"></div>
             </div>
+
             <div class="icon">🫘</div>
             فول
-            <div class="price">5 ج = 2 مغرفة</div>
+            <div class="price">مغرفة</div>
+
           </button>
 
-          <button class="food" onclick="bulkFood('falafel')">
-            <div class="icon">🧆</div>
-            فلافل
-            <div class="price">5 ج = 4</div>
-          </button>
+          <!-- فلافل -->
+          <button class="food" onclick="clickBag()">
 
-          <button class="food" onclick="bulkFood('baba')">
-            <div class="icon">🥣</div>
-            بابا غنوج
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('tahina')">
-            <div class="icon">🥣</div>
-            طحينة
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('foulMix')">
-            <div class="icon">🫘</div>
-            فول خلطة
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('mesaka')">
-            <div class="icon">🍆</div>
-            مسقعة
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('eggplant')">
-            <div class="icon">🍆</div>
-            باذنجان
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('egg')">
-            <div class="icon">🥚</div>
-            بيض
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('potato')">
-            <div class="icon">🍟</div>
-            بطاطس
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('fino')">
-            <div class="icon">🥖</div>
-            عيش فينو
-            <div class="price">5 ج</div>
-          </button>
-
-          <button class="food" onclick="bulkFood('shamy')">
-            <div class="icon">🫓</div>
-            عيش شامي
-            <div class="price">5 ج</div>
-          </button>
-
-          <!-- القرطاس -->
-          <button class="food" id="bagButton" onclick="useBag()">
             <div class="bag">
               <span id="bagCount">0</span>
             </div>
+
             قرطاس فلافل
             <div class="price">اضغط للإضافة</div>
+
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','baba')">
+            <div class="icon">🥣</div>
+            بابا غنوج
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','tahina')">
+            <div class="icon">🥣</div>
+            طحينة
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','foulMix')">
+            <div class="icon">🫘</div>
+            فول خلطة
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','mesaka')">
+            <div class="icon">🍆</div>
+            مسقعة
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','eggplant')">
+            <div class="icon">🍆</div>
+            باذنجان
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','egg')">
+            <div class="icon">🥚</div>
+            بيض
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','potato')">
+            <div class="icon">🍟</div>
+            بطاطس
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','fino')">
+            <div class="icon">🥖</div>
+            عيش فينو
+            <div class="price">سايب</div>
+          </button>
+
+          <button class="food" onclick="clickFood('bulk','shamy')">
+            <div class="icon">🫓</div>
+            عيش شامي
+            <div class="price">سايب</div>
           </button>
 
         </div>
+
       </div>
 
-      <!-- الساندوتشات -->
+      <!-- ================= SANDWICHES ================= -->
+
       <div class="section">
+
         <h2>🥙 سندوتشات</h2>
 
         <div class="food-grid">
 
-          <button class="food" onclick="sandwich('foul')">
+          <button class="food" onclick="clickFood('sandwich','foul')">
             <div class="icon">🫘</div>
             فول
           </button>
 
-          <button class="food" onclick="sandwich('falafel')">
+          <button class="food" onclick="clickFood('sandwich','falafel')">
             <div class="icon">🧆</div>
             فلافل
           </button>
 
-          <button class="food" onclick="sandwich('foulMix')">
+          <button class="food" onclick="clickFood('sandwich','foulMix')">
             <div class="icon">🫘</div>
             فول خلطة
           </button>
 
-          <button class="food" onclick="sandwich('mesaka')">
+          <button class="food" onclick="clickFood('sandwich','mesaka')">
             <div class="icon">🍆</div>
             مسقعة
           </button>
 
-          <button class="food" onclick="sandwich('eggplant')">
+          <button class="food" onclick="clickFood('sandwich','eggplant')">
             <div class="icon">🍆</div>
             باذنجان
           </button>
 
-          <button class="food" onclick="sandwich('egg')">
+          <button class="food" onclick="clickFood('sandwich','egg')">
             <div class="icon">🥚</div>
             بيض
           </button>
 
-          <button class="food" onclick="sandwich('potato')">
+          <button class="food" onclick="clickFood('sandwich','potato')">
             <div class="icon">🍟</div>
             بطاطس
           </button>
 
-          <!-- الخلطة اتشالت من هنا -->
-
         </div>
+
       </div>
 
     </div>
 
+    <!-- ================= BOTTOM ================= -->
+
     <div class="bottom">
 
       <div class="tools">
+
         <div class="tool">
           <div class="icon">🥄</div>
           مغرفة
@@ -648,28 +690,31 @@ header h1{
           <div class="icon">🥚</div>
           بيض
         </div>
+
       </div>
 
       <div class="upgrades">
+
         <h3>⚙️ التطويرات</h3>
 
         <button class="upgrade" onclick="upgrade('capacity')">
-          🥘 زيادة المخزون
+          🥘 المخزون
           <br>
-          <span id="capacityText">30 جنيه</span>
+          <span id="capacityCost">30</span> ج
         </button>
 
         <button class="upgrade" onclick="upgrade('speed')">
-          ⚡ سرعة المطبخ
+          ⚡ السرعة
           <br>
-          <span id="speedText">40 جنيه</span>
+          <span id="speedCost">40</span> ج
         </button>
 
         <button class="upgrade" onclick="upgrade('service')">
-          👨‍🍳 سرعة الخدمة
+          👨‍🍳 الخدمة
           <br>
-          <span id="serviceText">50 جنيه</span>
+          <span id="serviceCost">50</span> ج
         </button>
+
       </div>
 
     </div>
@@ -678,35 +723,72 @@ header h1{
 </div>
 
 <script>
-const foods={
-  foul:{name:"فول",price:5},
-  falafel:{name:"فلافل",price:5},
-  baba:{name:"بابا غنوج",price:5},
-  tahina:{name:"طحينة",price:5},
-  foulMix:{name:"فول خلطة",price:5},
-  mesaka:{name:"مسقعة",price:5},
-  eggplant:{name:"باذنجان",price:5},
-  egg:{name:"بيض",price:5},
-  potato:{name:"بطاطس",price:5},
-  fino:{name:"عيش فينو",price:5},
-  shamy:{name:"عيش شامي",price:5}
+
+/* =====================================================
+   بيانات اللعبة
+===================================================== */
+
+const foodNames={
+
+  foul:"فول",
+  falafel:"فلافل",
+  baba:"بابا غنوج",
+  tahina:"طحينة",
+  foulMix:"فول خلطة",
+  mesaka:"مسقعة",
+  eggplant:"باذنجان",
+  egg:"بيض",
+  potato:"بطاطس",
+  fino:"عيش فينو",
+  shamy:"عيش شامي"
+
 };
 
-let money=Number(localStorage.getItem("money"))||50;
-let rating=Number(localStorage.getItem("rating"))||5;
-let served=Number(localStorage.getItem("served"))||0;
-let level=Number(localStorage.getItem("level"))||1;
 
-let capacityLevel=Number(localStorage.getItem("capacityLevel"))||1;
-let speedLevel=Number(localStorage.getItem("speedLevel"))||1;
-let serviceLevel=Number(localStorage.getItem("serviceLevel"))||1;
+/* =====================================================
+   حفظ البيانات
+===================================================== */
+
+let money=Number(localStorage.getItem("money")) || 50;
+let rating=Number(localStorage.getItem("rating")) || 5;
+let served=Number(localStorage.getItem("served")) || 0;
+let level=Number(localStorage.getItem("level")) || 1;
+
+let capacityLevel=Number(localStorage.getItem("capacityLevel")) || 1;
+let speedLevel=Number(localStorage.getItem("speedLevel")) || 1;
+let serviceLevel=Number(localStorage.getItem("serviceLevel")) || 1;
+
+
+/* =====================================================
+   الطلبات
+===================================================== */
 
 let customers=[];
-let nextId=1;
+
+let customerId=1;
+
+
+/*
+  كل طلب له:
+
+  type
+  food
+  required
+  prepared
+
+  مثال:
+
+  فول بـ5
+  required = 2
+  prepared = 0
+
+  كل ضغطة فول:
+  prepared++
+*/
+
 
 const bulkFoods=[
   "foul",
-  "falafel",
   "baba",
   "tahina",
   "foulMix",
@@ -718,6 +800,7 @@ const bulkFoods=[
   "shamy"
 ];
 
+
 const sandwichFoods=[
   "foul",
   "falafel",
@@ -728,386 +811,721 @@ const sandwichFoods=[
   "potato"
 ];
 
+
+/* =====================================================
+   تحديث الشاشة
+===================================================== */
+
+function updateStats(){
+
+  document.getElementById("money").textContent=money;
+
+  document.getElementById("rating").textContent=rating;
+
+  document.getElementById("served").textContent=served;
+
+  document.getElementById("level").textContent=level;
+
+  document.getElementById("capacityCost").textContent=
+    30*capacityLevel;
+
+  document.getElementById("speedCost").textContent=
+    40*speedLevel;
+
+  document.getElementById("serviceCost").textContent=
+    50*serviceLevel;
+
+}
+
+
+/* =====================================================
+   حفظ
+===================================================== */
+
 function save(){
+
   localStorage.setItem("money",money);
   localStorage.setItem("rating",rating);
   localStorage.setItem("served",served);
   localStorage.setItem("level",level);
+
   localStorage.setItem("capacityLevel",capacityLevel);
   localStorage.setItem("speedLevel",speedLevel);
   localStorage.setItem("serviceLevel",serviceLevel);
+
 }
 
-function updateStats(){
-  document.getElementById("money").textContent=money;
-  document.getElementById("rating").textContent=rating;
-  document.getElementById("served").textContent=served;
-  document.getElementById("level").textContent=level;
 
-  document.getElementById("capacityText").textContent=
-    (30*capacityLevel)+" جنيه";
-
-  document.getElementById("speedText").textContent=
-    (40*speedLevel)+" جنيه";
-
-  document.getElementById("serviceText").textContent=
-    (50*serviceLevel)+" جنيه";
-}
-
-/* إنشاء طلب */
+/* =====================================================
+   إنشاء زبون
+===================================================== */
 
 function createCustomer(){
 
+  /*
+    لا نزود عن 3 زباين
+  */
+
   if(customers.length>=3) return;
 
-  const isBulk=Math.random()<.48;
 
-  let key;
-  let moneyAmount;
-  let count;
+  const bulk=Math.random()<0.5;
 
-  if(isBulk){
 
-    key=bulkFoods[Math.floor(Math.random()*bulkFoods.length)];
+  if(bulk){
 
-    moneyAmount=(Math.floor(Math.random()*3)+1)*5;
+    const food=
+      bulkFoods[
+        Math.floor(Math.random()*bulkFoods.length)
+      ];
 
-    if(key==="foul"){
-      count=moneyAmount===5?2:moneyAmount===10?4:6;
+
+    let moneyAmount=
+      (Math.floor(Math.random()*3)+1)*5;
+
+
+    /*
+      كل 5 جنيه = وحدة
+
+      الفول:
+      5 = 2 مغرفة
+      10 = 4
+      15 = 6
+
+      باقي الأصناف:
+      5 = وحدة
+      10 = وحدتين
+      15 = 3
+    */
+
+    let required;
+
+    if(food==="foul"){
+
+      required=
+        (moneyAmount/5)*2;
+
+    }else{
+
+      required=
+        moneyAmount/5;
+
     }
-    else if(key==="falafel"){
-      count=moneyAmount/5*4;
-    }
-    else{
-      count=moneyAmount/5;
-    }
+
+
+    customers.push({
+
+      id:customerId++,
+
+      type:"bulk",
+
+      food:food,
+
+      money:moneyAmount,
+
+      required:required,
+
+      prepared:0
+
+    });
 
   }else{
 
-    key=sandwichFoods[
-      Math.floor(Math.random()*sandwichFoods.length)
-    ];
+    const food=
+      sandwichFoods[
+        Math.floor(Math.random()*sandwichFoods.length)
+      ];
 
-    count=Math.floor(Math.random()*3)+1;
+
+    const required=
+      Math.floor(Math.random()*3)+1;
+
+
+    customers.push({
+
+      id:customerId++,
+
+      type:"sandwich",
+
+      food:food,
+
+      money:required*5,
+
+      required:required,
+
+      prepared:0
+
+    });
+
   }
 
-  customers.push({
-    id:nextId++,
-    type:isBulk?"bulk":"sandwich",
-    key:key,
-    money:moneyAmount,
-    count:count,
-    servedCount:0
-  });
 
   renderCustomers();
+
 }
 
-/* عرض الزباين */
+
+/* =====================================================
+   عرض الزباين
+===================================================== */
 
 function renderCustomers(){
 
   const box=document.getElementById("customers");
+
   box.innerHTML="";
+
 
   customers.forEach(c=>{
 
     const div=document.createElement("div");
+
     div.className="customer";
+
     div.id="customer-"+c.id;
 
-    let orderText="";
+
+    let text="";
+
 
     if(c.type==="bulk"){
 
-      if(c.key==="foul"){
-        orderText=`عايز بـ${c.money} فول<br>🥄 ${c.count} مغارف`;
+      if(c.food==="foul"){
+
+        text=
+          `عايز بـ<span class="red">${c.money}</span> فول<br>`+
+          `🥄 ${c.required} مغارف`;
+
       }
-      else if(c.key==="falafel"){
-        orderText=`عايز بـ${c.money} فلافل<br>🧆 ${c.count} فلافليات`;
+      else if(c.food==="falafel"){
+
+        text=
+          `عايز بـ<span class="red">${c.money}</span> فلافل<br>`+
+          `🧆 ${c.required} فلافلية`;
+
       }
       else{
-        orderText=`عايز بـ${c.money} ${foods[c.key].name}`;
+
+        text=
+          `عايز بـ<span class="red">${c.money}</span> `+
+          foodNames[c.food];
+
       }
 
     }else{
 
-      orderText=`عايز ${c.count} سندوتش<br>${foods[c.key].name}`;
+      text=
+        `عايز <span class="red">${c.required}</span> سندوتش<br>`+
+        foodNames[c.food];
+
     }
 
+
+    const percentage=
+      Math.min(
+        100,
+        (c.prepared/c.required)*100
+      );
+
+
+    const ready=
+      c.prepared>=c.required;
+
+
     div.innerHTML=`
+
       <div class="person">
         <div class="head"></div>
         <div class="body"></div>
       </div>
 
-      <div class="order">${orderText}</div>
+      <div class="order">
+        ${text}
+      </div>
 
-      <button onclick="deliver(${c.id})">
-        تسليم الطلب
+      <div class="progress">
+        <div style="width:${percentage}%"></div>
+      </div>
+
+      <button
+        class="deliver ${ready?"ready":""}"
+        onclick="deliver(${c.id})"
+      >
+        ${ready?"✅ تسليم":"تسليم الطلب"}
       </button>
+
     `;
 
+
     box.appendChild(div);
+
   });
+
 }
 
-/* العميل الحالي */
 
-function currentCustomer(){
+/* =====================================================
+   البحث عن الطلب المناسب
+===================================================== */
 
-  if(customers.length===0){
-    toast("مفيش زبون دلوقتي");
-    return null;
-  }
+function findOrder(type,food){
 
-  return customers[0];
-}
+  /*
+    ندور على أول طلب من نفس النوع
+    ونفس الصنف ولسه ناقص
+  */
 
-/* السايب */
+  return customers.find(c=>
 
-function bulkFood(key){
+    c.type===type &&
+    c.food===food &&
+    c.prepared<c.required
 
-  const c=currentCustomer();
-  if(!c) return;
-
-  if(c.type!=="bulk" || c.key!==key){
-    toast("ده مش طلب الزبون!");
-    return;
-  }
-
-  if(key==="foul"){
-    scoopEffect("🥄");
-    c.servedCount++;
-
-    toast(`مغرفة فول ${c.servedCount}/${c.count}`);
-  }
-  else if(key==="falafel"){
-    toast("الفلافل السايبة استخدم القرطاس 🛍️");
-    return;
-  }
-  else{
-    c.servedCount=c.count;
-    scoopEffect("🥣");
-    toast("اتجهز");
-  }
-
-  renderCustomers();
-}
-
-/* قرطاس الفلافل */
-
-let bagCustomerId=null;
-let bagCount=0;
-
-function useBag(){
-
-  const c=currentCustomer();
-  if(!c) return;
-
-  if(c.type!=="bulk" || c.key!=="falafel"){
-    toast("القرطاس للفلافل السايبة فقط");
-    return;
-  }
-
-  if(bagCustomerId!==c.id){
-    bagCustomerId=c.id;
-    bagCount=0;
-  }
-
-  if(bagCount>=c.count){
-    toast("القرطاس اكتمل!");
-    return;
-  }
-
-  bagCount++;
-  c.servedCount=bagCount;
-
-  document.getElementById("bagCount").textContent=bagCount;
-
-  document.getElementById("bagButton")
-    .classList.add("bulk-active");
-
-  scoopEffect("🧆");
-
-  toast(`${bagCount} / ${c.count}`);
-
-  if(bagCount===c.count){
-    setTimeout(()=>{
-      toast("القرطاس جاهز للتسليم ✅");
-    },150);
-  }
-
-  renderCustomers();
-}
-
-/* الساندوتشات */
-
-function sandwich(key){
-
-  const c=currentCustomer();
-  if(!c) return;
-
-  if(c.type!=="sandwich" || c.key!==key){
-    toast("ده مش طلب الزبون!");
-    return;
-  }
-
-  if(c.servedCount>=c.count){
-    toast("الطلب اكتمل");
-    return;
-  }
-
-  c.servedCount++;
-
-  scoopEffect("🥙");
-
-  toast(
-    `سندوتش ${c.servedCount}/${c.count}`
   );
 
-  renderCustomers();
 }
 
-/* تسليم */
+
+/* =====================================================
+   ضغط أي مكون
+===================================================== */
+
+function clickFood(type,food){
+
+  const order=findOrder(type,food);
+
+
+  /*
+    لو مفيش طلب مطابق
+  */
+
+  if(!order){
+
+    toast("مفيش زبون طالب الصنف ده دلوقتي ❌");
+
+    return;
+  }
+
+
+  /*
+    الفول السايب
+    كل ضغطة = مغرفة
+  */
+
+  if(type==="bulk" && food==="foul"){
+
+    order.prepared++;
+
+    effect("🥄");
+
+    toast(
+      `مغرفة فول ${order.prepared}/${order.required}`
+    );
+
+  }
+
+
+  /*
+    باقي السايب
+    كل ضغطة = وحدة
+  */
+
+  else if(type==="bulk"){
+
+    order.prepared++;
+
+    effect("🥣");
+
+    toast(
+      `${order.prepared}/${order.required}`
+    );
+
+  }
+
+
+  /*
+    الساندوتش
+    كل ضغطة = سندوتش
+  */
+
+  else{
+
+    order.prepared++;
+
+    effect("🥙");
+
+    toast(
+      `سندوتش ${order.prepared}/${order.required}`
+    );
+
+  }
+
+
+  renderCustomers();
+
+}
+
+
+/* =====================================================
+   قرطاس الفلافل
+===================================================== */
+
+let bagOrderId=null;
+let bagCount=0;
+
+
+function clickBag(){
+
+  /*
+    لازم يكون فيه طلب فلافل سايب
+  */
+
+  const order=findOrder("bulk","falafel");
+
+
+  if(!order){
+
+    toast("مفيش طلب فلافل سايب دلوقتي ❌");
+
+    return;
+  }
+
+
+  /*
+    لو بدأنا طلب جديد
+  */
+
+  if(bagOrderId!==order.id){
+
+    bagOrderId=order.id;
+
+    bagCount=order.prepared;
+
+  }
+
+
+  /*
+    القرطاس اكتمل
+  */
+
+  if(order.prepared>=order.required){
+
+    toast("القرطاس اكتمل ✅");
+
+    return;
+  }
+
+
+  /*
+    إضافة فلافلية واحدة
+  */
+
+  order.prepared++;
+
+  bagCount=order.prepared;
+
+
+  document.getElementById("bagCount").textContent=
+    bagCount;
+
+
+  effect("🧆");
+
+
+  toast(
+    `${bagCount}/${order.required} فلافلية`
+  );
+
+
+  renderCustomers();
+
+}
+
+
+/* =====================================================
+   تسليم الطلب
+===================================================== */
 
 function deliver(id){
 
-  const c=customers.find(x=>x.id===id);
+  const order=
+    customers.find(c=>c.id===id);
 
-  if(!c) return;
 
-  if(c.servedCount<c.count){
-    toast("الطلب لسه ناقص ❌");
+  if(!order) return;
+
+
+  /*
+    الطلب ناقص
+  */
+
+  if(order.prepared<order.required){
+
+    const left=
+      order.required-order.prepared;
+
+    toast(
+      `الطلب ناقص ${left} ❌`
+    );
+
     return;
+
   }
 
-  const el=document.getElementById("customer-"+id);
 
-  if(el){
-    el.classList.add("done");
-  }
+  /*
+    فلوس
+  */
 
-  money+=c.money;
+  money+=order.money;
+
   served++;
 
+
+  /*
+    كل 10 زباين = لفل
+  */
+
   if(served%10===0){
+
     level++;
-    toast("🎉 وصلت لفل جديد!");
+
+    toast("🎉 مستوى جديد!");
+
   }else{
-    toast("✅ الطلب اتسلّم!");
+
+    toast("✅ الطلب اتسلّم");
+
   }
 
-  customers=customers.filter(x=>x.id!==id);
 
-  bagCustomerId=null;
-  bagCount=0;
+  /*
+    حركة الزبون
+  */
 
-  document.getElementById("bagCount").textContent="0";
-  document.getElementById("bagButton")
-    .classList.remove("bulk-active");
+  const element=
+    document.getElementById(
+      "customer-"+id
+    );
+
+
+  if(element){
+
+    element.classList.add("leaving");
+
+  }
+
+
+  /*
+    حذف الطلب
+  */
+
+  setTimeout(()=>{
+
+    customers=
+      customers.filter(
+        c=>c.id!==id
+      );
+
+    renderCustomers();
+
+  },350);
+
+
+  /*
+    إعادة القرطاس
+  */
+
+  if(bagOrderId===id){
+
+    bagOrderId=null;
+
+    bagCount=0;
+
+    document.getElementById(
+      "bagCount"
+    ).textContent="0";
+
+  }
+
 
   save();
+
   updateStats();
 
-  setTimeout(renderCustomers,350);
 }
 
-/* المؤثر */
 
-function scoopEffect(symbol){
+/* =====================================================
+   المؤثر
+===================================================== */
 
-  const e=document.createElement("div");
-  e.className="scoop";
+function effect(symbol){
+
+  const e=
+    document.createElement("div");
+
+  e.className="effect";
+
   e.textContent=symbol;
 
-  e.style.left=(40+Math.random()*20)+"%";
-  e.style.top="55%";
+  e.style.left=
+    (40+Math.random()*20)+"%";
+
+  e.style.top="58%";
+
 
   document.body.appendChild(e);
 
-  setTimeout(()=>e.remove(),600);
+
+  setTimeout(()=>{
+    e.remove();
+  },600);
+
 }
 
-/* تطويرات */
+
+/* =====================================================
+   رسالة
+===================================================== */
+
+function toast(text){
+
+  const old=
+    document.querySelector(".toast");
+
+  if(old) old.remove();
+
+
+  const t=
+    document.createElement("div");
+
+  t.className="toast";
+
+  t.textContent=text;
+
+
+  document.body.appendChild(t);
+
+
+  setTimeout(()=>{
+    t.remove();
+  },900);
+
+}
+
+
+/* =====================================================
+   التطويرات
+===================================================== */
 
 function upgrade(type){
 
   let cost;
 
+
   if(type==="capacity"){
+
     cost=30*capacityLevel;
 
     if(money<cost){
+
       toast("الفلوس مش كفاية 💰");
+
       return;
     }
 
     money-=cost;
+
     capacityLevel++;
+
     toast("🥘 المخزون اتطور!");
+
   }
 
+
   if(type==="speed"){
+
     cost=40*speedLevel;
 
     if(money<cost){
+
       toast("الفلوس مش كفاية 💰");
+
       return;
     }
 
     money-=cost;
+
     speedLevel++;
-    toast("⚡ المطبخ بقى أسرع!");
+
+    toast("⚡ السرعة اتطورت!");
+
   }
 
+
   if(type==="service"){
+
     cost=50*serviceLevel;
 
     if(money<cost){
+
       toast("الفلوس مش كفاية 💰");
+
       return;
     }
 
     money-=cost;
+
     serviceLevel++;
-    toast("👨‍🍳 الخدمة بقت أسرع!");
+
+    toast("👨‍🍳 الخدمة اتطورت!");
+
   }
 
+
   save();
+
   updateStats();
+
 }
 
-/* رسالة */
 
-function toast(text){
-
-  const old=document.querySelector(".toast");
-  if(old) old.remove();
-
-  const t=document.createElement("div");
-  t.className="toast";
-  t.textContent=text;
-
-  document.body.appendChild(t);
-
-  setTimeout(()=>t.remove(),900);
-}
-
-/* تشغيل اللعبة */
+/* =====================================================
+   البداية
+===================================================== */
 
 updateStats();
 
-for(let i=0;i<3;i++){
-  setTimeout(createCustomer,i*250);
-}
+
+/*
+  أول 3 زباين
+*/
+
+setTimeout(createCustomer,300);
+
+setTimeout(createCustomer,900);
+
+setTimeout(createCustomer,1500);
+
+
+/*
+  زبون جديد تلقائيًا
+*/
 
 setInterval(()=>{
+
   createCustomer();
+
 },3500);
 
-/* حفظ تلقائي */
+
+/*
+  حفظ تلقائي
+*/
+
 setInterval(save,5000);
+
 </script>
 
 </body>

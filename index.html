@@ -2,12 +2,12 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مطعم فول وفلافل - MAZEN MOHAMED</title>
+    <title>كشك الشيف مازن للفول والفلافل</title>
     <style>
         body {
             font-family: Tahoma, sans-serif;
             text-align: center;
-            background: linear-gradient(135deg, #111827, #b45309);
+            background: linear-gradient(135deg, #0f172a, #9a3412);
             color: #fff;
             margin: 0;
             padding: 8px;
@@ -16,101 +16,113 @@
         }
 
         h1 {
-            margin: 5px 0;
-            font-size: 24px;
+            margin: 4px 0;
+            font-size: 22px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-            color: #facc15;
+            color: #fde047;
         }
 
         .stats-bar {
             display: flex;
             justify-content: center;
             gap: 15px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             background: rgba(0,0,0,0.5);
-            padding: 6px;
-            border-radius: 10px;
-            max-width: 450px;
-            margin: 0 auto 8px auto;
+            padding: 5px;
+            border-radius: 8px;
+            max-width: 420px;
+            margin: 0 auto 6px auto;
             border: 2px solid #f59e0b;
         }
 
-        /* شاشة المطعم وحركة الزبائن */
+        /* طابور الزبائن بالكامل على الكاونتر */
         .kitchen-scene {
             position: relative;
-            background: #1f2937;
-            border: 3px solid #facc15;
+            background: #1e293b;
+            border: 3px solid #fde047;
             border-radius: 12px;
-            height: 130px;
+            height: 125px;
             max-width: 600px;
-            margin: 0 auto 8px auto;
+            margin: 0 auto 6px auto;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding-bottom: 5px;
         }
 
-        .customer {
-            position: absolute;
-            bottom: 10px;
+        .queue-spot {
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.8s ease-in-out;
+            width: 30%;
+            transition: all 0.5s ease-in-out;
         }
 
-        .avatar {
-            font-size: 45px;
+        .customer-body {
+            font-size: 38px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #cbd5e1;
         }
 
         .order-bubble {
             background: #fff;
             color: #111;
-            padding: 5px 10px;
-            border-radius: 8px;
-            font-size: 12px;
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 11px;
             font-weight: bold;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             border: 2px solid #ef4444;
             white-space: nowrap;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .timer-bar-container {
-            width: 120px;
-            height: 6px;
-            background: #4b5563;
+            width: 90px;
+            height: 5px;
+            background: #475569;
             border-radius: 3px;
             overflow: hidden;
+            margin-top: 2px;
         }
 
         .timer-fill {
             height: 100%;
-            background: #10b981;
+            background: #22c55e;
             width: 100%;
         }
 
-        /* طاولة المكونات والأطباق البارزة */
+        /* طاولة التحضير وأطباق الغرف */
         .counter-area {
-            background: #f3f4f6;
-            color: #111;
+            background: #f8fafc;
+            color: #1e293b;
             max-width: 600px;
-            margin: 0 auto 8px auto;
-            padding: 10px;
+            margin: 0 auto 6px auto;
+            padding: 8px;
             border-radius: 12px;
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
             border: 3px solid #d97706;
         }
 
         .sandwich-plate {
-            background: #e5e7eb;
-            border: 2px dashed #9ca3af;
+            background: #e2e8f0;
+            border: 2px dashed #94a3b8;
             border-radius: 8px;
-            min-height: 40px;
-            padding: 5px;
-            font-size: 14px;
+            min-height: 38px;
+            padding: 4px;
+            font-size: 13px;
             font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 8px;
+            color: #1e293b;
+            margin-bottom: 6px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -121,20 +133,20 @@
         .ingredients-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 5px;
         }
 
         .ingredient-dish {
             background: #ffffff;
             border: 2px solid #f59e0b;
-            border-radius: 10px;
-            padding: 6px 2px;
-            font-size: 12px;
+            border-radius: 8px;
+            padding: 5px 2px;
+            font-size: 11px;
             font-weight: bold;
-            color: #1f2937;
+            color: #1e293b;
             cursor: pointer;
             transition: transform 0.1s, background 0.2s;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -142,7 +154,7 @@
         }
 
         .ingredient-dish span:first-child {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .ingredient-dish:active {
@@ -155,30 +167,30 @@
         .action-buttons {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 6px;
             flex-wrap: wrap;
         }
 
         .btn-main {
-            background: #059669;
+            background: #16a34a;
             color: white;
             border: none;
-            padding: 6px 12px;
-            font-size: 13px;
+            padding: 5px 10px;
+            font-size: 12px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        .btn-main:hover { background: #047857; }
+        .btn-main:hover { background: #15803d; }
 
         .btn-undo {
             background: #d97706;
             color: white;
             border: none;
-            padding: 6px 12px;
-            font-size: 13px;
+            padding: 5px 10px;
+            font-size: 12px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
@@ -189,8 +201,8 @@
             background: #dc2626;
             color: white;
             border: none;
-            padding: 6px 12px;
-            font-size: 13px;
+            padding: 5px 10px;
+            font-size: 12px;
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
@@ -198,40 +210,53 @@
         .btn-clear:hover { background: #b91c1c; }
 
         #gameMessage {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            margin-top: 5px;
-            min-height: 20px;
+            margin-top: 4px;
+            min-height: 18px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <h1>🥙 مطعم فول وفلافل (شيف مازن) 🥙</h1>
+    <h1>🥙 كشك الشيف مازن للفول والفلافل 🥙</h1>
     
     <div class="stats-bar">
         <span>💰 الأرباح: <span id="moneyScore">0</span> ج.م</span>
         <span>⭐ الطلبات: <span id="successCount">0</span></span>
     </div>
 
-    <!-- شاشة المطبخ والزبون المتحرك -->
-    <div class="kitchen-scene" id="kitchenScene">
-        <div id="customerSlot" class="customer" style="right: -100px;">
-            <div class="order-bubble" id="orderBubble">مستني الطلب...</div>
-            <div class="avatar" id="customerAvatar">🤵</div>
+    <!-- طابور الزبائن الثلاثة الواقفين على الكاونتر -->
+    <div class="kitchen-scene">
+        <!-- زبون 3 (البعيد في الطابور) -->
+        <div class="queue-spot" id="spot2" style="opacity: 0.5; transform: scale(0.85);">
+            <div class="order-bubble" id="bubble2">انتظار...</div>
+            <div class="customer-body" id="avatar2">👤</div>
+            <div class="timer-bar-container"><div class="timer-fill" style="width: 100%;"></div></div>
+        </div>
+        <!-- زبون 2 (الوسط) -->
+        <div class="queue-spot" id="spot1" style="opacity: 0.75; transform: scale(0.92);">
+            <div class="order-bubble" id="bubble1">انتظار...</div>
+            <div class="customer-body" id="avatar1">👤</div>
+            <div class="timer-bar-container"><div class="timer-fill" style="width: 100%;"></div></div>
+        </div>
+        <!-- زبون 1 (الأمامي اللي عليه الدور) -->
+        <div class="queue-spot" id="spot0" style="opacity: 1; transform: scale(1);">
+            <div class="order-bubble" id="bubble0">مستني الطلب</div>
+            <div class="customer-body" id="avatar0">🤵</div>
             <div class="timer-bar-container">
-                <div class="timer-fill" id="timerFill"></div>
+                <div class="timer-fill" id="timerFill0"></div>
             </div>
         </div>
     </div>
 
-    <!-- أطباق المكونات البارزة وطاسة التحضير -->
+    <!-- أطباق الغرف وطاسة التحضير -->
     <div class="counter-area">
-        <div style="font-weight: bold; margin-bottom: 3px; color: #b45309;">🍽️ طاسة الساندوتشات الحالية:</div>
-        <div class="sandwich-plate" id="sandwichPlate">اختر العيش والأطباق من تحت..</div>
+        <div style="font-weight: bold; margin-bottom: 2px; color: #b45309;">🥣 طاسة الغرف والتحضير:</div>
+        <div class="sandwich-plate" id="sandwichPlate">اغرف المكونات في الطبق من الأطباق أدناه..</div>
 
-        <div style="font-weight: bold; margin-bottom: 5px; color: #1f2937;">أطباق المكونات الطازجة:</div>
+        <div style="font-weight: bold; margin-bottom: 4px; color: #1e293b;">أطباق المكونات الطازجة:</div>
         <div class="ingredients-grid">
             <button class="ingredient-dish" onclick="addIngredient('🥖 فينو')"><span>🥖</span><span>فينو</span></button>
             <button class="ingredient-dish" onclick="addIngredient('🫓 شامي')"><span>🫓</span><span>شامي</span></button>
@@ -247,16 +272,15 @@
         </div>
 
         <div class="action-buttons">
-            <button class="btn-main" onclick="serveOrder()">🚀 تسليم</button>
+            <button class="btn-main" onclick="serveOrder()">🚀 تسليم الطلب</button>
             <button class="btn-undo" onclick="undoLast()">↩️ رجوع</button>
-            <button class="btn-clear" onclick="clearPlate()">🗑️ مسح الكل</button>
+            <button class="btn-clear" onclick="clearPlate()">🗑️ مسح</button>
         </div>
     </div>
 
-    <div id="gameMessage">المطعم فتح والزبائن في الطريق!</div>
+    <div id="gameMessage">الطابور اتملى.. اغرف وجهز الطلب الأول!</div>
 
     <script>
-        // نظام الصوت الداخلي
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playSound(type) {
             if (audioCtx.state === 'suspended') { audioCtx.resume(); }
@@ -301,83 +325,96 @@
 
         let currentMoney = 0;
         let successOrders = 0;
-        let currentCustomerOrder = [];
         let currentSandwich = [];
         let timerInterval = null;
-        let isServing = false;
 
-        function startNewCustomer() {
-            isServing = false;
-            currentSandwich = [];
-            updatePlateDisplay();
+        // مصفوفة الطابور (تحتوي على 3 زبائن)
+        let queue = [];
 
-            let avatar = avatars[Math.floor(Math.random() * avatars.length)];
-            document.getElementById('customerAvatar').textContent = avatar;
-
+        function getRandomOrder() {
             let orderSize = Math.floor(Math.random() * 3) + 2;
-            currentCustomerOrder = [];
+            let order = [];
             let bread = Math.random() > 0.5 ? '🥖 فينو' : '🫓 شامي';
-            currentCustomerOrder.push(bread);
-
-            while(currentCustomerOrder.length < orderSize) {
+            order.push(bread);
+            while(order.length < orderSize) {
                 let randomIng = availableItems[Math.floor(Math.random() * availableItems.length)];
-                if(!currentCustomerOrder.includes(randomIng)) {
-                    currentCustomerOrder.push(randomIng);
+                if(!order.includes(randomIng)) {
+                    order.push(randomIng);
                 }
             }
+            return order;
+        }
 
-            document.getElementById('orderBubble').textContent = "أنا طالب: " + currentCustomerOrder.join(' + ');
+        function initQueue() {
+            queue = [];
+            for(let i = 0; i < 3; i++) {
+                queue.push({
+                    avatar: avatars[Math.floor(Math.random() * avatars.length)],
+                    order: getRandomOrder(),
+                    timeLeft: 100
+                });
+            }
+            updateQueueDisplay();
+            startTimer();
+        }
 
-            // حركة دخول الزبون من اليمين للمنتصف
-            let customerSlot = document.getElementById('customerSlot');
-            customerSlot.style.right = '-100px';
-            setTimeout(() => {
-                customerSlot.style.right = '40%';
-            }, 100);
+        function updateQueueDisplay() {
+            for(let i = 0; i < 3; i++) {
+                let avatarElem = document.getElementById('avatar' + i);
+                let bubbleElem = document.getElementById('bubble' + i);
+                if(queue[i]) {
+                    avatarElem.textContent = queue[i].avatar;
+                    bubbleElem.textContent = (i === 0 ? "عاوز: " : "انتظار: ") + queue[i].order.join(' + ');
+                    avatarElem.parentElement.style.display = "flex";
+                } else {
+                    avatarElem.parentElement.style.display = "none";
+                    bubbleElem.textContent = "";
+                }
+            }
+        }
 
-            document.getElementById('gameMessage').textContent = "الزبون وصل الكاونتر.. جهز الطلب!";
-            document.getElementById('gameMessage').style.color = "#facc15";
-
-            // مؤشر الوقت (14 ثانية)
+        function startTimer() {
             clearInterval(timerInterval);
-            let timeLeft = 100;
             let totalTime = 14000;
             let intervalTime = 100;
             let decrement = 100 / (totalTime / intervalTime);
 
             timerInterval = setInterval(() => {
-                timeLeft -= decrement;
-                let fill = document.getElementById('timerFill');
-                if(fill) {
-                    fill.style.width = timeLeft + '%';
-                    fill.style.background = timeLeft < 35 ? '#ef4444' : '#10b981';
-                }
+                if(queue.length > 0) {
+                    queue[0].timeLeft -= decrement;
+                    let fill = document.getElementById('timerFill0');
+                    if(fill) {
+                        fill.style.width = queue[0].timeLeft + '%';
+                        fill.style.background = queue[0].timeLeft < 35 ? '#ef4444' : '#22c55e';
+                    }
 
-                if(timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    if(!isServing) {
-                        isServing = true;
+                    if(queue[0].timeLeft <= 0) {
                         playSound('fail');
-                        document.getElementById('gameMessage').textContent = "⏳ الوقت خلص! الزبون مشي غضبان.";
+                        document.getElementById('gameMessage').textContent = "⏳ الزبون الأول مشي زعلان عشان التأخير!";
                         document.getElementById('gameMessage').style.color = "#ef4444";
                         
-                        // حركة خروج الزبون لليسار
-                        customerSlot.style.right = '110%';
-                        setTimeout(startNewCustomer, 1000);
+                        queue.shift(); // إزالة الزبون الأول
+                        // إضافة زبون جديد في آخر الطابور
+                        queue.push({
+                            avatar: avatars[Math.floor(Math.random() * avatars.length)],
+                            order: getRandomOrder(),
+                            timeLeft: 100
+                        });
+                        currentSandwich = [];
+                        updatePlateDisplay();
+                        updateQueueDisplay();
                     }
                 }
             }, intervalTime);
         }
 
         function addIngredient(item) {
-            if(isServing) return;
             playSound('click');
             currentSandwich.push(item);
             updatePlateDisplay();
         }
 
         function undoLast() {
-            if(isServing) return;
             if(currentSandwich.length > 0) {
                 playSound('click');
                 currentSandwich.pop();
@@ -386,7 +423,6 @@
         }
 
         function clearPlate() {
-            if(isServing) return;
             playSound('click');
             currentSandwich = [];
             updatePlateDisplay();
@@ -395,24 +431,22 @@
         function updatePlateDisplay() {
             const plate = document.getElementById('sandwichPlate');
             if(currentSandwich.length === 0) {
-                plate.textContent = "اختر العيش والأطباق من تحت..";
+                plate.textContent = "اغرف المكونات في الطبق من الأطباق أدناه..";
             } else {
                 plate.textContent = currentSandwich.join(' ➔ ');
             }
         }
 
         function serveOrder() {
-            if(isServing) return;
+            if(queue.length === 0) return;
             if(currentSandwich.length === 0) {
                 playSound('fail');
-                document.getElementById('gameMessage').textContent = "⚠️ الطاسة فاضية يا شيف!";
+                document.getElementById('gameMessage').textContent = "⚠️ الطبق فاضي يا شيف!";
                 document.getElementById('gameMessage').style.color = "#ef4444";
                 return;
             }
 
-            isServing = true;
-            clearInterval(timerInterval);
-
+            let currentCustomerOrder = queue[0].order;
             let isMatch = true;
             if(currentSandwich.length !== currentCustomerOrder.length) {
                 isMatch = false;
@@ -425,7 +459,6 @@
                 }
             }
 
-            let customerSlot = document.getElementById('customerSlot');
             const msg = document.getElementById('gameMessage');
 
             if(isMatch) {
@@ -434,24 +467,30 @@
                 successOrders++;
                 document.getElementById('moneyScore').textContent = currentMoney;
                 document.getElementById('successCount').textContent = successOrders;
-                msg.textContent = "🎉 تسلم إيدك يا شيف مازن! الزبون فرح ودفع الحساب.";
-                msg.style.color = "#10b981";
-                
-                // حركة خروج الزبون وهو مبسوط لليسار
-                customerSlot.style.right = '110%';
-                setTimeout(startNewCustomer, 1000);
+                msg.textContent = "🎉 تسلم إيدك يا شيف مازن! الزبون قبض وقام مبسوط.";
+                msg.style.color = "#22c55e";
             } else {
                 playSound('fail');
-                msg.textContent = "❌ الطلب مش مظبوط! الزبون زعل وساب المطعم.";
+                msg.textContent = "❌ الطلب غلط! الزبون ساب الطابور ومشي غضبان.";
                 msg.style.color = "#ef4444";
-                
-                customerSlot.style.right = '110%';
-                setTimeout(startNewCustomer, 1000);
             }
+
+            // تقدم الطابور للأمام
+            queue.shift();
+            queue.push({
+                avatar: avatars[Math.floor(Math.random() * avatars.length)],
+                order: getRandomOrder(),
+                timeLeft: 100
+            });
+
+            currentSandwich = [];
+            updatePlateDisplay();
+            updateQueueDisplay();
+            startTimer();
         }
 
         window.onload = function() {
-            startNewCustomer();
+            initQueue();
         };
     </script>
 </body>

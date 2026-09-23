@@ -36,13 +36,13 @@
             border: 2px solid #f59e0b;
         }
 
-        /* طابور الزبائن بالكامل على الكاونتر */
+        /* مسرح المطعم وطابور الزبائن بأجسام كاملة */
         .kitchen-scene {
             position: relative;
             background: #1e293b;
             border: 3px solid #fde047;
             border-radius: 12px;
-            height: 125px;
+            height: 145px;
             max-width: 600px;
             margin: 0 auto 6px auto;
             overflow: hidden;
@@ -50,27 +50,42 @@
             display: flex;
             align-items: flex-end;
             justify-content: space-around;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
         }
 
         .queue-spot {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 30%;
+            width: 32%;
             transition: all 0.5s ease-in-out;
         }
 
-        .customer-body {
-            font-size: 38px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            width: 55px;
-            height: 55px;
+        /* شخصية كاملة (رأس، جسم، أيد، ورجول) */
+        .full-body-customer {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            filter: drop-shadow(0 3px 3px rgba(0,0,0,0.4));
+        }
+
+        .customer-head {
+            font-size: 30px;
+            margin-bottom: -4px;
+            z-index: 2;
+        }
+
+        .customer-torso {
+            font-size: 38px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 2px 10px;
             border: 2px solid #cbd5e1;
+        }
+
+        .customer-legs {
+            font-size: 24px;
+            margin-top: -6px;
         }
 
         .order-bubble {
@@ -83,7 +98,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             border: 2px solid #ef4444;
             white-space: nowrap;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .timer-bar-container {
@@ -92,7 +107,7 @@
             background: #475569;
             border-radius: 3px;
             overflow: hidden;
-            margin-top: 2px;
+            margin-top: 3px;
         }
 
         .timer-fill {
@@ -227,24 +242,36 @@
         <span>⭐ الطلبات: <span id="successCount">0</span></span>
     </div>
 
-    <!-- طابور الزبائن الثلاثة الواقفين على الكاونتر -->
+    <!-- طابور الزبائن بأجسام كاملة على الكاونتر -->
     <div class="kitchen-scene">
-        <!-- زبون 3 (البعيد في الطابور) -->
-        <div class="queue-spot" id="spot2" style="opacity: 0.5; transform: scale(0.85);">
+        <!-- زبون 3 (البعيد) -->
+        <div class="queue-spot" id="spot2" style="opacity: 0.5; transform: scale(0.8);">
             <div class="order-bubble" id="bubble2">انتظار...</div>
-            <div class="customer-body" id="avatar2">👤</div>
+            <div class="full-body-customer">
+                <div class="customer-head" id="head2">👤</div>
+                <div class="customer-torso">👕</div>
+                <div class="customer-legs">👖🚶‍♂️</div>
+            </div>
             <div class="timer-bar-container"><div class="timer-fill" style="width: 100%;"></div></div>
         </div>
         <!-- زبون 2 (الوسط) -->
-        <div class="queue-spot" id="spot1" style="opacity: 0.75; transform: scale(0.92);">
+        <div class="queue-spot" id="spot1" style="opacity: 0.75; transform: scale(0.9);">
             <div class="order-bubble" id="bubble1">انتظار...</div>
-            <div class="customer-body" id="avatar1">👤</div>
+            <div class="full-body-customer">
+                <div class="customer-head" id="head1">👤</div>
+                <div class="customer-torso">🧥</div>
+                <div class="customer-legs">👖🚶‍♂️</div>
+            </div>
             <div class="timer-bar-container"><div class="timer-fill" style="width: 100%;"></div></div>
         </div>
         <!-- زبون 1 (الأمامي اللي عليه الدور) -->
         <div class="queue-spot" id="spot0" style="opacity: 1; transform: scale(1);">
             <div class="order-bubble" id="bubble0">مستني الطلب</div>
-            <div class="customer-body" id="avatar0">🤵</div>
+            <div class="full-body-customer">
+                <div class="customer-head" id="head0">🤵</div>
+                <div class="customer-torso">👔✋</div>
+                <div class="customer-legs">👖🧍‍♂️</div>
+            </div>
             <div class="timer-bar-container">
                 <div class="timer-fill" id="timerFill0"></div>
             </div>
@@ -278,7 +305,7 @@
         </div>
     </div>
 
-    <div id="gameMessage">الطابور اتملى.. اغرف وجهز الطلب الأول!</div>
+    <div id="gameMessage">الزبائن بأجسامهم الكاملة في الطابور.. اجهز يا شيف!</div>
 
     <script>
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -321,14 +348,14 @@
             '🥘 مسقعة', '🥒 مخلل', '🤍 طحينة'
         ];
 
-        const avatars = ['🤵', '👷‍♂️', '🧕', '👨‍🦱', '🧔‍♂️', '🧑‍🎓', '👳‍♂️', '👩‍💼'];
+        const heads = ['🤵', '👷‍♂️', '🧕', '👨‍🦱', '🧔‍♂️', '🧑‍🎓', '👳‍♂️', '👩‍💼'];
+        const torsos = ['👔', '👕', '🧥', '🥼', '🦺'];
+        const activeLegs = ['👖🧍‍♂️', '👖🚶‍♂️', '👖🏃‍♂️'];
 
         let currentMoney = 0;
         let successOrders = 0;
         let currentSandwich = [];
         let timerInterval = null;
-
-        // مصفوفة الطابور (تحتوي على 3 زبائن)
         let queue = [];
 
         function getRandomOrder() {
@@ -349,7 +376,9 @@
             queue = [];
             for(let i = 0; i < 3; i++) {
                 queue.push({
-                    avatar: avatars[Math.floor(Math.random() * avatars.length)],
+                    head: heads[Math.floor(Math.random() * heads.length)],
+                    torso: torsos[Math.floor(Math.random() * torsos.length)],
+                    legs: activeLegs[Math.floor(Math.random() * activeLegs.length)],
                     order: getRandomOrder(),
                     timeLeft: 100
                 });
@@ -360,14 +389,14 @@
 
         function updateQueueDisplay() {
             for(let i = 0; i < 3; i++) {
-                let avatarElem = document.getElementById('avatar' + i);
+                let headElem = document.getElementById('head' + i);
                 let bubbleElem = document.getElementById('bubble' + i);
                 if(queue[i]) {
-                    avatarElem.textContent = queue[i].avatar;
+                    headElem.textContent = queue[i].head;
                     bubbleElem.textContent = (i === 0 ? "عاوز: " : "انتظار: ") + queue[i].order.join(' + ');
-                    avatarElem.parentElement.style.display = "flex";
+                    headElem.parentElement.parentElement.style.display = "flex";
                 } else {
-                    avatarElem.parentElement.style.display = "none";
+                    headElem.parentElement.parentElement.style.display = "none";
                     bubbleElem.textContent = "";
                 }
             }
@@ -390,13 +419,14 @@
 
                     if(queue[0].timeLeft <= 0) {
                         playSound('fail');
-                        document.getElementById('gameMessage').textContent = "⏳ الزبون الأول مشي زعلان عشان التأخير!";
+                        document.getElementById('gameMessage').textContent = "⏳ الزبون مشي غضبان!";
                         document.getElementById('gameMessage').style.color = "#ef4444";
                         
-                        queue.shift(); // إزالة الزبون الأول
-                        // إضافة زبون جديد في آخر الطابور
+                        queue.shift();
                         queue.push({
-                            avatar: avatars[Math.floor(Math.random() * avatars.length)],
+                            head: heads[Math.floor(Math.random() * heads.length)],
+                            torso: torsos[Math.floor(Math.random() * torsos.length)],
+                            legs: activeLegs[Math.floor(Math.random() * activeLegs.length)],
                             order: getRandomOrder(),
                             timeLeft: 100
                         });
@@ -467,18 +497,19 @@
                 successOrders++;
                 document.getElementById('moneyScore').textContent = currentMoney;
                 document.getElementById('successCount').textContent = successOrders;
-                msg.textContent = "🎉 تسلم إيدك يا شيف مازن! الزبون قبض وقام مبسوط.";
+                msg.textContent = "🎉 عاش يا شيف مازن! الزبون أخد طلبه ومشي فرحان.";
                 msg.style.color = "#22c55e";
             } else {
                 playSound('fail');
-                msg.textContent = "❌ الطلب غلط! الزبون ساب الطابور ومشي غضبان.";
+                msg.textContent = "❌ الطلب مش مظبوط! الزبون غضب وساب الكشك.";
                 msg.style.color = "#ef4444";
             }
 
-            // تقدم الطابور للأمام
             queue.shift();
             queue.push({
-                avatar: avatars[Math.floor(Math.random() * avatars.length)],
+                head: heads[Math.floor(Math.random() * heads.length)],
+                torso: torsos[Math.floor(Math.random() * torsos.length)],
+                legs: activeLegs[Math.floor(Math.random() * activeLegs.length)],
                 order: getRandomOrder(),
                 timeLeft: 100
             });

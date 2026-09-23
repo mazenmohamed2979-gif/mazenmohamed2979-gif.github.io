@@ -2,578 +2,446 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>مطعمي الشعبي</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Tahoma,sans-serif;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Arial,Tahoma,sans-serif;
+  background:#f4dfb5;
 }
 
 body{
-    background:#f5e6c8;
-    color:#33251b;
-    overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
 }
 
 header{
-    background:#7b2d26;
-    color:white;
-    padding:12px;
-    text-align:center;
-    box-shadow:0 3px 8px #0004;
-    position:sticky;
-    top:0;
-    z-index:50;
+  height:54px;
+  min-height:54px;
+  background:#8b4513;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  padding:4px;
+  box-shadow:0 2px 8px #0005;
+  z-index:5;
 }
 
 header h1{
-    font-size:25px;
-    margin-bottom:8px;
-}
-
-.stats{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
+  margin:0;
+  font-size:19px;
 }
 
 .stat{
-    background:#ffffff22;
-    padding:7px 12px;
-    border-radius:20px;
-    font-weight:bold;
+  background:#ffffff22;
+  border-radius:10px;
+  padding:5px 8px;
+  text-align:center;
+  font-size:11px;
+}
+
+.stat b{
+  display:block;
+  font-size:14px;
 }
 
 .game{
-    max-width:1100px;
-    margin:auto;
-    padding:15px;
+  height:calc(100dvh - 54px);
+  padding:5px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-height:0;
 }
 
-.levelBox{
-    text-align:center;
-    margin:10px;
-    font-size:18px;
-}
-
-/* =========================
-   الزباين
-========================= */
+/* الزباين */
 
 .customers{
-    display:flex;
-    gap:14px;
-    min-height:220px;
-    align-items:flex-end;
-    justify-content:center;
-    flex-wrap:wrap;
+  height:24%;
+  min-height:125px;
+  display:flex;
+  gap:5px;
+  overflow:hidden;
+  justify-content:center;
 }
 
 .customer{
-    width:145px;
-    background:white;
-    border-radius:15px;
-    padding:10px;
-    box-shadow:0 4px 10px #0002;
-    position:relative;
-    animation:appear .4s ease;
+  flex:1;
+  max-width:150px;
+  min-width:0;
+  background:#fff;
+  border:2px solid #d3a15b;
+  border-radius:13px;
+  padding:4px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 5px #0002;
+  position:relative;
+  animation:arrive .35s ease;
 }
 
-@keyframes appear{
-    from{
-        transform:translateY(40px);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
+@keyframes arrive{
+  from{transform:translateY(-30px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+
+.customer.done{
+  animation:leave .4s forwards;
+}
+
+@keyframes leave{
+  to{
+    transform:translateY(-100%);
+    opacity:0;
+  }
 }
 
 .person{
-    width:65px;
-    height:95px;
-    margin:auto;
-    position:relative;
+  width:38px;
+  height:48px;
+  position:relative;
+  margin-top:1px;
 }
 
 .head{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:#c98755;
-    margin:auto;
-    position:relative;
-    z-index:2;
-    border:2px solid #70452c;
-}
-
-.hair{
-    width:49px;
-    height:20px;
-    background:#3b2417;
-    border-radius:30px 30px 5px 5px;
-    position:absolute;
-    top:-2px;
-    left:-1px;
-}
-
-.eye{
-    width:5px;
-    height:5px;
-    background:#222;
-    border-radius:50%;
-    position:absolute;
-    top:23px;
-}
-
-.eye.one{
-    right:10px;
-}
-
-.eye.two{
-    left:10px;
-}
-
-.mouth{
-    width:16px;
-    height:6px;
-    border-bottom:2px solid #522;
-    border-radius:50%;
-    position:absolute;
-    top:33px;
-    left:14px;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:#c8895b;
+  position:absolute;
+  top:0;
+  left:7px;
 }
 
 .body{
-    width:60px;
-    height:52px;
-    background:#2878a8;
-    position:absolute;
-    bottom:0;
-    left:2px;
-    border-radius:18px 18px 5px 5px;
-}
-
-.arm{
-    width:12px;
-    height:45px;
-    background:#c98755;
-    position:absolute;
-    top:43px;
-    border-radius:10px;
-}
-
-.arm.left{
-    left:-5px;
-    transform:rotate(15deg);
-}
-
-.arm.right{
-    right:-5px;
-    transform:rotate(-15deg);
+  width:38px;
+  height:25px;
+  border-radius:18px 18px 5px 5px;
+  background:#2768a8;
+  position:absolute;
+  bottom:0;
 }
 
 .order{
-    background:#fff3cd;
-    border:2px dashed #d99a20;
-    border-radius:10px;
-    padding:7px;
-    text-align:center;
-    margin-top:6px;
-    font-size:14px;
-    min-height:48px;
+  width:100%;
+  text-align:center;
+  font-weight:bold;
+  color:#5a3015;
+  font-size:12px;
+  line-height:16px;
 }
 
-.wait{
-    height:7px;
-    background:#ddd;
-    border-radius:10px;
-    margin-top:7px;
-    overflow:hidden;
+.order .amount{
+  color:#c0392b;
+  font-size:14px;
 }
 
-.waitbar{
-    height:100%;
-    background:#43a047;
-    width:100%;
-    transition:width .5s linear;
+.customer button{
+  width:100%;
+  border:0;
+  border-radius:8px;
+  background:#27ae60;
+  color:white;
+  font-weight:bold;
+  padding:5px 2px;
+  font-size:11px;
 }
 
-/* =========================
-   تقسيم المطبخ
-========================= */
+/* المطبخ */
 
 .kitchen{
-    margin-top:20px;
-    background:#fffaf0;
-    border:3px solid #b47a42;
-    border-radius:18px;
-    padding:15px;
-    box-shadow:0 4px 10px #0002;
+  flex:1;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 }
-
-.kitchenTitle{
-    text-align:center;
-    font-size:23px;
-    margin-bottom:15px;
-}
-
-/* نصين */
 
 .sections{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
 }
 
 .section{
-    background:#f7ead2;
-    border:2px solid #d0a56a;
-    border-radius:15px;
-    padding:12px;
+  background:#fff7e8;
+  border:2px solid #b87932;
+  border-radius:12px;
+  padding:4px;
+  min-width:0;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
 }
 
-.sectionTitle{
-    text-align:center;
-    background:#7b2d26;
-    color:white;
-    padding:9px;
-    border-radius:10px;
-    margin-bottom:12px;
-    font-size:20px;
-    font-weight:bold;
+.section h2{
+  margin:0 0 3px;
+  text-align:center;
+  background:#8b4513;
+  color:#fff;
+  border-radius:8px;
+  font-size:15px;
+  padding:4px;
+  flex-shrink:0;
 }
 
-/* =========================
-   الأكل
-========================= */
-
-.foods{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
+.food-grid{
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:1fr;
+  gap:3px;
 }
 
 .food{
-    background:white;
-    border:2px solid #ddd;
-    border-radius:15px;
-    padding:12px;
-    text-align:center;
-    cursor:pointer;
-    transition:.15s;
-    user-select:none;
-    min-height:125px;
-}
-
-.food:hover{
-    transform:translateY(-4px);
-    box-shadow:0 5px 10px #0002;
+  border:1px solid #c99958;
+  border-radius:8px;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  padding:2px;
+  font-size:9px;
+  font-weight:bold;
+  color:#4d2c16;
+  position:relative;
+  overflow:hidden;
 }
 
 .food:active{
-    transform:scale(.95);
+  transform:scale(.94);
 }
 
-.foodIcon{
-    font-size:42px;
-    height:50px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+.icon{
+  font-size:29px;
+  line-height:30px;
 }
 
-.foodName{
-    font-weight:bold;
-    margin:5px 0;
+.price{
+  color:#d35400;
+  font-size:9px;
 }
 
-.foodPrice{
-    color:#16833b;
-    font-weight:bold;
-}
-
-/* =========================
-   مؤثر القدرة
-========================= */
-
-.potArea{
-    position:relative;
-    height:105px;
-    margin-bottom:10px;
-    background:#ead3aa;
-    border-radius:15px;
-    overflow:hidden;
-    border:2px solid #c0965b;
-}
-
-.bigPot{
-    position:absolute;
-    bottom:-10px;
-    left:50%;
-    transform:translateX(-50%);
-    width:125px;
-    height:65px;
-    background:#6d7075;
-    border-radius:15px 15px 40px 40px;
-    border:5px solid #444;
-}
-
-.bigPot:before{
-    content:"";
-    position:absolute;
-    width:105px;
-    height:25px;
-    background:#65401f;
-    border-radius:50%;
-    top:-12px;
-    left:5px;
-}
-
-.steam{
-    position:absolute;
-    font-size:25px;
-    animation:steam 2s infinite ease-in-out;
-}
-
-.steam.one{
-    left:42%;
-    top:15px;
-}
-
-.steam.two{
-    left:52%;
-    top:5px;
-    animation-delay:.5s;
-}
-
-@keyframes steam{
-    0%{
-        transform:translateY(15px);
-        opacity:0;
-    }
-    50%{
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-15px);
-        opacity:0;
-    }
-}
+/* المغرفة */
 
 .ladle{
-    position:absolute;
-    right:23%;
-    top:10px;
-    font-size:45px;
-    transform:rotate(-25deg);
-    animation:ladle 3s infinite ease-in-out;
+  position:absolute;
+  top:-2px;
+  left:50%;
+  transform:translateX(-50%);
+  width:18px;
+  height:34px;
+  z-index:4;
+  pointer-events:none;
 }
 
-@keyframes ladle{
-    0%,100%{
-        transform:rotate(-25deg) translateY(0);
-    }
-    50%{
-        transform:rotate(15deg) translateY(25px);
-    }
+.ladle-handle{
+  position:absolute;
+  width:5px;
+  height:22px;
+  background:#777;
+  left:7px;
+  top:0;
+  border-radius:4px;
 }
 
-.scoopEffect{
-    position:absolute;
-    width:18px;
-    height:18px;
-    background:#9b622c;
-    border-radius:50%;
-    opacity:0;
+.ladle-head{
+  position:absolute;
+  width:18px;
+  height:13px;
+  background:#777;
+  border-radius:50%;
+  bottom:0;
 }
 
-.scoopEffect.active{
-    animation:scoop .7s ease-out;
+/* قرطاس */
+
+.bag{
+  width:39px;
+  height:30px;
+  background:#d99b48;
+  clip-path:polygon(10% 0,90% 0,78% 100%,22% 100%);
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
 }
 
-@keyframes scoop{
-    0%{
-        right:32%;
-        bottom:20px;
-        opacity:1;
-    }
-    100%{
-        right:45%;
-        bottom:80px;
-        opacity:0;
-    }
+.bag span{
+  color:white;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:4px;
 }
 
-/* =========================
-   السايب
-========================= */
-
-.bulkFood{
-    position:relative;
+.bulk-active{
+  outline:3px solid #27ae60;
 }
 
-.bulkLabel{
-    display:block;
-    background:#eee2c9;
-    padding:5px;
-    border-radius:8px;
-    margin-top:6px;
-    font-size:13px;
+/* السجل */
+
+.bottom{
+  height:29%;
+  min-height:125px;
+  background:#fff7e8;
+  border:2px solid #b87932;
+  border-radius:12px;
+  padding:4px;
+  display:flex;
+  gap:5px;
 }
 
-/* =========================
-   الطلب الحالي
-========================= */
-
-.serving{
-    margin-top:15px;
-    text-align:center;
-    background:#f0dfbd;
-    padding:10px;
-    border-radius:12px;
-    font-weight:bold;
+.tools{
+  width:55%;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:3px;
 }
 
-/* =========================
-   التطوير
-========================= */
+.tool{
+  background:#fff;
+  border:1px solid #c99958;
+  border-radius:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  font-size:8px;
+  font-weight:bold;
+  color:#4d2c16;
+}
+
+.tool .icon{
+  font-size:25px;
+  line-height:26px;
+}
 
 .upgrades{
-    margin-top:15px;
-    background:#ead7b5;
-    padding:12px;
-    border-radius:15px;
-    border:2px solid #c49b61;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
 }
 
-.upgradeTitle{
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.upgradeGrid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+.upgrades h3{
+  margin:0;
+  text-align:center;
+  font-size:12px;
+  background:#8b4513;
+  color:white;
+  padding:3px;
+  border-radius:7px;
 }
 
 .upgrade{
-    background:white;
-    border-radius:12px;
-    padding:10px;
-    text-align:center;
-    border:2px solid #ddd;
+  flex:1;
+  border:0;
+  border-radius:7px;
+  background:#e67e22;
+  color:white;
+  font-size:9px;
+  font-weight:bold;
 }
 
-.upgrade button{
-    margin-top:7px;
-    background:#e69a19;
-    color:white;
-    width:100%;
+/* مؤثر الغرف */
+
+.scoop{
+  position:fixed;
+  pointer-events:none;
+  font-size:34px;
+  z-index:99;
+  animation:scoop .55s ease-out forwards;
 }
 
-/* =========================
-   التحكم
-========================= */
-
-.controls{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:15px;
-    flex-wrap:wrap;
-}
-
-button{
-    border:0;
-    border-radius:12px;
-    padding:11px 18px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.reset{
-    background:#8b3a3a;
-    color:white;
-}
-
-/* =========================
-   الرسائل
-========================= */
-
-#message{
-    position:fixed;
-    top:75px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#222;
-    color:white;
-    padding:12px 22px;
-    border-radius:30px;
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
-    z-index:100;
-    white-space:nowrap;
-}
-
-#message.show{
+@keyframes scoop{
+  0%{
     opacity:1;
+    transform:translate(0,0) rotate(0);
+  }
+  100%{
+    opacity:0;
+    transform:translate(0,-75px) rotate(25deg);
+  }
 }
 
-.empty{
-    text-align:center;
-    color:#765;
-    width:100%;
-    padding:30px;
+.toast{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:#222e;
+  color:white;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  z-index:200;
+  animation:toast .9s forwards;
 }
 
-/* =========================
-   موبايل
-========================= */
-
-@media(max-width:700px){
-
-    .sections{
-        grid-template-columns:1fr;
-    }
-
-    .upgradeGrid{
-        grid-template-columns:1fr;
-    }
+@keyframes toast{
+  0%{opacity:0;transform:translate(-50%,-30%)}
+  15%{opacity:1;transform:translate(-50%,-50%)}
+  80%{opacity:1}
+  100%{opacity:0}
 }
 
-@media(max-width:450px){
+/* شاشات صغيرة جدا */
 
-    .customer{
-        width:130px;
-    }
+@media(max-height:650px){
+  header{
+    height:46px;
+    min-height:46px;
+  }
 
-    .customers{
-        min-height:180px;
-    }
+  .game{
+    height:calc(100dvh - 46px);
+  }
 
-    header h1{
-        font-size:21px;
-    }
+  .customers{
+    min-height:105px;
+  }
 
-    .food{
-        min-height:115px;
-    }
+  .person{
+    transform:scale(.8);
+    transform-origin:center top;
+    height:40px;
+  }
 
-    .foodIcon{
-        font-size:42px;
-    }
+  .icon{
+    font-size:24px;
+    line-height:25px;
+  }
+
+  .food .icon{
+    font-size:25px;
+  }
+
+  .bottom{
+    min-height:105px;
+  }
+
+  .tool .icon{
+    font-size:21px;
+    line-height:22px;
+  }
 }
 </style>
 </head>
@@ -581,1819 +449,666 @@ button{
 <body>
 
 <header>
+  <h1>🍽️ مطعمي الشعبي</h1>
 
-    <h1>🍽️ مطعمي الشعبي</h1>
+  <div class="stat">
+    💰
+    <b id="money">50</b>
+  </div>
 
-    <div class="stats">
+  <div class="stat">
+    ⭐
+    <b id="rating">5</b>
+  </div>
 
-        <div class="stat">
-            💰 <span id="money">100</span> جنيه
-        </div>
+  <div class="stat">
+    👥
+    <b id="served">0</b>
+  </div>
 
-        <div class="stat">
-            ⭐ <span id="rating">100</span>%
-        </div>
-
-        <div class="stat">
-            👥 <span id="served">0</span> زبون
-        </div>
-
-    </div>
-
+  <div class="stat">
+    🏆
+    <b id="level">1</b>
+  </div>
 </header>
-
-<div id="message"></div>
 
 <div class="game">
 
-    <div class="levelBox">
-        المستوى:
-        <b id="level">1</b>
-        —
-        الهدف:
-        <b id="goal">5</b>
-        زباين
+  <div class="customers" id="customers"></div>
+
+  <div class="kitchen">
+
+    <div class="sections">
+
+      <!-- السايب -->
+      <div class="section">
+        <h2>🥣 سايب</h2>
+
+        <div class="food-grid">
+
+          <button class="food" onclick="bulkFood('foul')">
+            <div class="ladle">
+              <div class="ladle-handle"></div>
+              <div class="ladle-head"></div>
+            </div>
+            <div class="icon">🫘</div>
+            فول
+            <div class="price">5 ج = 2 مغرفة</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('falafel')">
+            <div class="icon">🧆</div>
+            فلافل
+            <div class="price">5 ج = 4</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('baba')">
+            <div class="icon">🥣</div>
+            بابا غنوج
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('tahina')">
+            <div class="icon">🥣</div>
+            طحينة
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('foulMix')">
+            <div class="icon">🫘</div>
+            فول خلطة
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('mesaka')">
+            <div class="icon">🍆</div>
+            مسقعة
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('eggplant')">
+            <div class="icon">🍆</div>
+            باذنجان
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('egg')">
+            <div class="icon">🥚</div>
+            بيض
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('potato')">
+            <div class="icon">🍟</div>
+            بطاطس
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('fino')">
+            <div class="icon">🥖</div>
+            عيش فينو
+            <div class="price">5 ج</div>
+          </button>
+
+          <button class="food" onclick="bulkFood('shamy')">
+            <div class="icon">🫓</div>
+            عيش شامي
+            <div class="price">5 ج</div>
+          </button>
+
+          <!-- القرطاس -->
+          <button class="food" id="bagButton" onclick="useBag()">
+            <div class="bag">
+              <span id="bagCount">0</span>
+            </div>
+            قرطاس فلافل
+            <div class="price">اضغط للإضافة</div>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- الساندوتشات -->
+      <div class="section">
+        <h2>🥙 سندوتشات</h2>
+
+        <div class="food-grid">
+
+          <button class="food" onclick="sandwich('foul')">
+            <div class="icon">🫘</div>
+            فول
+          </button>
+
+          <button class="food" onclick="sandwich('falafel')">
+            <div class="icon">🧆</div>
+            فلافل
+          </button>
+
+          <button class="food" onclick="sandwich('foulMix')">
+            <div class="icon">🫘</div>
+            فول خلطة
+          </button>
+
+          <button class="food" onclick="sandwich('mesaka')">
+            <div class="icon">🍆</div>
+            مسقعة
+          </button>
+
+          <button class="food" onclick="sandwich('eggplant')">
+            <div class="icon">🍆</div>
+            باذنجان
+          </button>
+
+          <button class="food" onclick="sandwich('egg')">
+            <div class="icon">🥚</div>
+            بيض
+          </button>
+
+          <button class="food" onclick="sandwich('potato')">
+            <div class="icon">🍟</div>
+            بطاطس
+          </button>
+
+          <!-- الخلطة اتشالت من هنا -->
+
+        </div>
+      </div>
+
     </div>
 
+    <div class="bottom">
 
-    <!-- الزباين -->
-
-    <section class="customers" id="customers"></section>
-
-
-    <!-- المطبخ -->
-
-    <section class="kitchen">
-
-        <div class="kitchenTitle">
-            👨‍🍳 المطبخ
+      <div class="tools">
+        <div class="tool">
+          <div class="icon">🥄</div>
+          مغرفة
         </div>
 
-
-        <!-- القدرة -->
-
-        <div class="potArea">
-
-            <div class="steam one">♨️</div>
-            <div class="steam two">♨️</div>
-
-            <div class="bigPot"></div>
-
-            <div class="ladle">
-                🥄
-            </div>
-
-            <div
-                id="scoopEffect"
-                class="scoopEffect">
-            </div>
-
+        <div class="tool">
+          <div class="icon">🫓</div>
+          عيش
         </div>
 
-
-        <div class="sections">
-
-            <!-- =====================
-                 السايب
-            ====================== -->
-
-            <div class="section">
-
-                <div class="sectionTitle">
-                    🥣 سايب
-                </div>
-
-                <div class="foods">
-
-                    <div
-                        class="food bulkFood"
-                        onclick="serveBulk('foul')">
-
-                        <div class="foodIcon">
-                            🥣
-                        </div>
-
-                        <div class="foodName">
-                            فول سايب
-                        </div>
-
-                        <div class="foodPrice">
-                            1 جنيه / وحدة
-                        </div>
-
-                        <span class="bulkLabel">
-                            الزبون يحدد المبلغ
-                        </span>
-
-                    </div>
-
-
-                    <div
-                        class="food bulkFood"
-                        onclick="serveBulk('falafel')">
-
-                        <div class="foodIcon">
-                            🧆
-                        </div>
-
-                        <div class="foodName">
-                            فلافل سايبة
-                        </div>
-
-                        <div class="foodPrice">
-                            5 جنيه / 4 قطع
-                        </div>
-
-                        <span class="bulkLabel">
-                            الزبون يحدد المبلغ
-                        </span>
-
-                    </div>
-
-
-                    <div
-                        class="food bulkFood"
-                        onclick="serveBulk('baba')">
-
-                        <div class="foodIcon">
-                            🍆
-                        </div>
-
-                        <div class="foodName">
-                            بابا غنوج سايب
-                        </div>
-
-                        <div class="foodPrice">
-                            1 جنيه / وحدة
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food bulkFood"
-                        onclick="serveBulk('tahini')">
-
-                        <div class="foodIcon">
-                            🥄
-                        </div>
-
-                        <div class="foodName">
-                            طحينة سايبة
-                        </div>
-
-                        <div class="foodPrice">
-                            1 جنيه / وحدة
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food bulkFood"
-                        onclick="serveBulk('mesaka')">
-
-                        <div class="foodIcon">
-                            🍆
-                        </div>
-
-                        <div class="foodName">
-                            مسقعة سايبة
-                        </div>
-
-                        <div class="foodPrice">
-                            1 جنيه / وحدة
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food bulkFood"
-                        onclick="serveBulk('eggplant')">
-
-                        <div class="foodIcon">
-                            🍆
-                        </div>
-
-                        <div class="foodName">
-                            باذنجان سايب
-                        </div>
-
-                        <div class="foodPrice">
-                            1 جنيه / وحدة
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- =====================
-                 سندوتشات
-            ====================== -->
-
-            <div class="section">
-
-                <div class="sectionTitle">
-                    🥖 سندوتشات
-                </div>
-
-                <div class="foods">
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('foul')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش فول
-                        </div>
-
-                        <div class="foodPrice">
-                            5 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('falafel')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش فلافل
-                        </div>
-
-                        <div class="foodPrice">
-                            5 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('mix')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش خلطة
-                        </div>
-
-                        <div class="foodPrice">
-                            7 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('foulMix')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش فول خلطة
-                        </div>
-
-                        <div class="foodPrice">
-                            7 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('mesaka')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش مسقعة
-                        </div>
-
-                        <div class="foodPrice">
-                            7 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('eggplant')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش باذنجان
-                        </div>
-
-                        <div class="foodPrice">
-                            7 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('egg')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش بيض
-                        </div>
-
-                        <div class="foodPrice">
-                            8 جنيه
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        class="food"
-                        onclick="serveSandwich('potato')">
-
-                        <div class="foodIcon">
-                            🥙
-                        </div>
-
-                        <div class="foodName">
-                            سندوتش بطاطس
-                        </div>
-
-                        <div class="foodPrice">
-                            6 جنيه
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="tool">
+          <div class="icon">🧆</div>
+          فلافل
         </div>
 
-
-        <!-- باقي الأصناف -->
-
-        <div style="margin-top:15px">
-
-            <div class="sectionTitle">
-                🍽️ أصناف إضافية
-            </div>
-
-            <div class="foods">
-
-                <div
-                    class="food"
-                    onclick="serveFood('breadFino')">
-
-                    <div class="foodIcon">
-                        🥖
-                    </div>
-
-                    <div class="foodName">
-                        عيش فينو
-                    </div>
-
-                    <div class="foodPrice">
-                        2 جنيه
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="food"
-                    onclick="serveFood('breadShami')">
-
-                    <div class="foodIcon">
-                        🫓
-                    </div>
-
-                    <div class="foodName">
-                        عيش شامي
-                    </div>
-
-                    <div class="foodPrice">
-                        2 جنيه
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="food"
-                    onclick="serveFood('mix')">
-
-                    <div class="foodIcon">
-                        🥣
-                    </div>
-
-                    <div class="foodName">
-                        خلطة
-                    </div>
-
-                    <div class="foodPrice">
-                        10 جنيه
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="food"
-                    onclick="serveFood('foulMix')">
-
-                    <div class="foodIcon">
-                        🥣
-                    </div>
-
-                    <div class="foodName">
-                        فول خلطة
-                    </div>
-
-                    <div class="foodPrice">
-                        10 جنيه
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="food"
-                    onclick="serveFood('mesaka')">
-
-                    <div class="foodIcon">
-                        🍆
-                    </div>
-
-                    <div class="foodName">
-                        مسقعة
-                    </div>
-
-                    <div class="foodPrice">
-                        15 جنيه
-                    </div>
-
-                </div>
-
-
-                <div
-                    class="food"
-                    onclick="serveFood('eggplant')">
-
-                    <div class="foodIcon">
-                        🍆
-                    </div>
-
-                    <div class="foodName">
-                        باذنجان
-                    </div>
-
-                    <div class="foodPrice">
-                        10 جنيه
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="tool">
+          <div class="icon">🥣</div>
+          طحينة
         </div>
 
-
-        <div class="serving" id="serving">
-            الزبون اللي قدامك هيحدد طلبه 👆
+        <div class="tool">
+          <div class="icon">🍆</div>
+          مسقعة
         </div>
 
-
-        <!-- التطوير -->
-
-        <div class="upgrades">
-
-            <div class="upgradeTitle">
-                🛠️ تطوير المطعم
-            </div>
-
-            <div class="upgradeGrid">
-
-                <div class="upgrade">
-
-                    <b>👥 مكان زبون</b>
-
-                    <div>
-                        السعة:
-                        <span id="capacityText">3</span>
-                    </div>
-
-                    <button onclick="upgradeCapacity()">
-                        تطوير
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade">
-
-                    <b>🥣 قدرة أكبر</b>
-
-                    <div>
-                        سرعة التحضير أعلى
-                    </div>
-
-                    <button onclick="upgradeSpeed()">
-                        تطوير
-                    </button>
-
-                </div>
-
-
-                <div class="upgrade">
-
-                    <b>⭐ خدمة أفضل</b>
-
-                    <div>
-                        رضا الزباين أعلى
-                    </div>
-
-                    <button onclick="upgradeService()">
-                        تطوير
-                    </button>
-
-                </div>
-
-            </div>
-
+        <div class="tool">
+          <div class="icon">🥚</div>
+          بيض
         </div>
+      </div>
 
-    </section>
+      <div class="upgrades">
+        <h3>⚙️ التطويرات</h3>
 
-
-    <div class="controls">
-
-        <button
-            class="reset"
-            onclick="resetGame()">
-            🔄 إعادة اللعبة
+        <button class="upgrade" onclick="upgrade('capacity')">
+          🥘 زيادة المخزون
+          <br>
+          <span id="capacityText">30 جنيه</span>
         </button>
 
+        <button class="upgrade" onclick="upgrade('speed')">
+          ⚡ سرعة المطبخ
+          <br>
+          <span id="speedText">40 جنيه</span>
+        </button>
+
+        <button class="upgrade" onclick="upgrade('service')">
+          👨‍🍳 سرعة الخدمة
+          <br>
+          <span id="serviceText">50 جنيه</span>
+        </button>
+      </div>
+
     </div>
 
+  </div>
 </div>
 
-
 <script>
-
-/* =====================================
-   الأصناف
-===================================== */
-
-const foods = {
-
-    foul:{
-        name:"فول",
-        price:5
-    },
-
-    falafel:{
-        name:"فلافل",
-        price:5
-    },
-
-    mix:{
-        name:"خلطة",
-        price:7
-    },
-
-    foulMix:{
-        name:"فول خلطة",
-        price:7
-    },
-
-    baba:{
-        name:"بابا غنوج",
-        price:5
-    },
-
-    tahini:{
-        name:"طحينة",
-        price:5
-    },
-
-    mesaka:{
-        name:"مسقعة",
-        price:7
-    },
-
-    eggplant:{
-        name:"باذنجان",
-        price:7
-    },
-
-    egg:{
-        name:"بيض",
-        price:8
-    },
-
-    potato:{
-        name:"بطاطس",
-        price:6
-    },
-
-    breadFino:{
-        name:"عيش فينو",
-        price:2
-    },
-
-    breadShami:{
-        name:"عيش شامي",
-        price:2
-    }
-
+const foods={
+  foul:{name:"فول",price:5},
+  falafel:{name:"فلافل",price:5},
+  baba:{name:"بابا غنوج",price:5},
+  tahina:{name:"طحينة",price:5},
+  foulMix:{name:"فول خلطة",price:5},
+  mesaka:{name:"مسقعة",price:5},
+  eggplant:{name:"باذنجان",price:5},
+  egg:{name:"بيض",price:5},
+  potato:{name:"بطاطس",price:5},
+  fino:{name:"عيش فينو",price:5},
+  shamy:{name:"عيش شامي",price:5}
 };
 
+let money=Number(localStorage.getItem("money"))||50;
+let rating=Number(localStorage.getItem("rating"))||5;
+let served=Number(localStorage.getItem("served"))||0;
+let level=Number(localStorage.getItem("level"))||1;
 
-/* =====================================
-   بيانات اللعبة
-===================================== */
+let capacityLevel=Number(localStorage.getItem("capacityLevel"))||1;
+let speedLevel=Number(localStorage.getItem("speedLevel"))||1;
+let serviceLevel=Number(localStorage.getItem("serviceLevel"))||1;
 
-let customers = [];
+let customers=[];
+let nextId=1;
 
-let money = 100;
-
-let rating = 100;
-
-let served = 0;
-
-let level = 1;
-
-let capacity = 3;
-
-let customerId = 1;
-
-let speedLevel = 1;
-
-let serviceLevel = 1;
-
-
-/* =====================================
-   أسماء
-===================================== */
-
-const names = [
-
-    "أحمد",
-    "محمد",
-    "عمر",
-    "يوسف",
-    "علي",
-    "محمود",
-    "كريم",
-    "سيف",
-    "آدم",
-    "حسن",
-    "مصطفى",
-    "ياسين",
-    "عمرو",
-    "إبراهيم"
-
+const bulkFoods=[
+  "foul",
+  "falafel",
+  "baba",
+  "tahina",
+  "foulMix",
+  "mesaka",
+  "eggplant",
+  "egg",
+  "potato",
+  "fino",
+  "shamy"
 ];
 
+const sandwichFoods=[
+  "foul",
+  "falafel",
+  "foulMix",
+  "mesaka",
+  "eggplant",
+  "egg",
+  "potato"
+];
 
-/* =====================================
-   رسائل
-===================================== */
-
-function showMessage(text){
-
-    const msg =
-        document.getElementById("message");
-
-    msg.innerText = text;
-
-    msg.classList.add("show");
-
-    setTimeout(()=>{
-
-        msg.classList.remove("show");
-
-    },1800);
-
+function save(){
+  localStorage.setItem("money",money);
+  localStorage.setItem("rating",rating);
+  localStorage.setItem("served",served);
+  localStorage.setItem("level",level);
+  localStorage.setItem("capacityLevel",capacityLevel);
+  localStorage.setItem("speedLevel",speedLevel);
+  localStorage.setItem("serviceLevel",serviceLevel);
 }
 
+function updateStats(){
+  document.getElementById("money").textContent=money;
+  document.getElementById("rating").textContent=rating;
+  document.getElementById("served").textContent=served;
+  document.getElementById("level").textContent=level;
 
-/* =====================================
-   طلبات السايب
-===================================== */
+  document.getElementById("capacityText").textContent=
+    (30*capacityLevel)+" جنيه";
 
-const bulkOrders = [
+  document.getElementById("speedText").textContent=
+    (40*speedLevel)+" جنيه";
 
-    {
-        type:"bulk",
-        food:"foul",
-        money:5
-    },
+  document.getElementById("serviceText").textContent=
+    (50*serviceLevel)+" جنيه";
+}
 
-    {
-        type:"bulk",
-        food:"foul",
-        money:10
-    },
+/* إنشاء طلب */
 
-    {
-        type:"bulk",
-        food:"foul",
-        money:20
-    },
+function createCustomer(){
 
-    {
-        type:"bulk",
-        food:"falafel",
-        money:5
-    },
+  if(customers.length>=3) return;
 
-    {
-        type:"bulk",
-        food:"falafel",
-        money:10
-    },
+  const isBulk=Math.random()<.48;
 
-    {
-        type:"bulk",
-        food:"falafel",
-        money:20
-    },
+  let key;
+  let moneyAmount;
+  let count;
 
-    {
-        type:"bulk",
-        food:"baba",
-        money:5
-    },
+  if(isBulk){
 
-    {
-        type:"bulk",
-        food:"tahini",
-        money:5
-    },
+    key=bulkFoods[Math.floor(Math.random()*bulkFoods.length)];
 
-    {
-        type:"bulk",
-        food:"mesaka",
-        money:10
-    },
+    moneyAmount=(Math.floor(Math.random()*3)+1)*5;
 
-    {
-        type:"bulk",
-        food:"eggplant",
-        money:10
+    if(key==="foul"){
+      count=moneyAmount===5?2:moneyAmount===10?4:6;
+    }
+    else if(key==="falafel"){
+      count=moneyAmount/5*4;
+    }
+    else{
+      count=moneyAmount/5;
     }
 
-];
+  }else{
 
-
-/* =====================================
-   طلبات السندوتشات
-===================================== */
-
-const sandwichOrders = [
-
-    {
-        type:"sandwich",
-        food:"foul",
-        count:1
-    },
-
-    {
-        type:"sandwich",
-        food:"foul",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"foul",
-        count:3
-    },
-
-    {
-        type:"sandwich",
-        food:"falafel",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"falafel",
-        count:3
-    },
-
-    {
-        type:"sandwich",
-        food:"mix",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"foulMix",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"mesaka",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"eggplant",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"egg",
-        count:2
-    },
-
-    {
-        type:"sandwich",
-        food:"potato",
-        count:2
-    }
-
-];
-
-
-/* =====================================
-   اختيار طلب
-===================================== */
-
-function randomOrder(){
-
-    const useBulk =
-        Math.random() < 0.5;
-
-    if(useBulk){
-
-        return bulkOrders[
-            Math.floor(
-                Math.random()*bulkOrders.length
-            )
-        ];
-
-    }
-
-    return sandwichOrders[
-        Math.floor(
-            Math.random()*sandwichOrders.length
-        )
+    key=sandwichFoods[
+      Math.floor(Math.random()*sandwichFoods.length)
     ];
 
+    count=Math.floor(Math.random()*3)+1;
+  }
+
+  customers.push({
+    id:nextId++,
+    type:isBulk?"bulk":"sandwich",
+    key:key,
+    money:moneyAmount,
+    count:count,
+    servedCount:0
+  });
+
+  renderCustomers();
 }
 
-
-/* =====================================
-   إضافة زبون أوتوماتيك
-===================================== */
-
-function addCustomer(){
-
-    if(customers.length >= capacity){
-
-        return;
-
-    }
-
-    const order =
-        randomOrder();
-
-    const customer = {
-
-        id:customerId++,
-
-        name:
-            names[
-                Math.floor(
-                    Math.random()*names.length
-                )
-            ],
-
-        order:order,
-
-        wait:100,
-
-        maxWait:100
-
-    };
-
-    customers.push(customer);
-
-    renderCustomers();
-
-}
-
-
-/* =====================================
-   الزباين
-===================================== */
+/* عرض الزباين */
 
 function renderCustomers(){
 
-    const container =
-        document.getElementById("customers");
-
-    container.innerHTML = "";
-
-
-    if(customers.length === 0){
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                مفيش زباين دلوقتي 😴
-                <br>
-                الزباين داخلين بالطابور...
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    customers.forEach(customer=>{
-
-        const order =
-            customer.order;
-
-        let orderText = "";
-
-        if(order.type === "bulk"){
-
-            if(order.food === "falafel"){
-
-                const pieces =
-                    Math.floor(
-                        order.money / 5
-                    ) * 4;
-
-                orderText =
-                    `عايز فلافل بـ
-                    <b>${order.money} جنيه</b>
-                    <br>
-                    (${pieces} قطع تقريبًا)`;
-
-            }else{
-
-                orderText =
-                    `عايز
-                    <b>${foods[order.food].name}</b>
-                    بـ
-                    <b>${order.money} جنيه</b>`;
-
-            }
-
-        }else{
-
-            orderText =
-                `عايز
-                <b>${order.count}</b>
-                سندوتش
-                <b>${foods[order.food].name}</b>`;
-
-        }
-
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "customer";
-
-
-        div.innerHTML = `
-
-            <div class="person">
-
-                <div class="head">
-
-                    <div class="hair"></div>
-
-                    <div class="eye one"></div>
-
-                    <div class="eye two"></div>
-
-                    <div class="mouth"></div>
-
-                </div>
-
-                <div class="body"></div>
-
-                <div class="arm left"></div>
-
-                <div class="arm right"></div>
-
-            </div>
-
-            <div
-                style="
-                text-align:center;
-                font-weight:bold
-                "
-            >
-                ${customer.name}
-            </div>
-
-            <div class="order">
-
-                ${orderText}
-
-            </div>
-
-            <div class="wait">
-
-                <div
-                    class="waitbar"
-                    style="
-                    width:${customer.wait}%
-                    "
-                ></div>
-
-            </div>
-
-        `;
-
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/* =====================================
-   تأثير المغرفة
-===================================== */
-
-function scoopAnimation(){
-
-    const effect =
-        document.getElementById(
-            "scoopEffect"
-        );
-
-    effect.classList.remove("active");
-
-    void effect.offsetWidth;
-
-    effect.classList.add("active");
-
-}
-
-
-/* =====================================
-   فحص الطلب
-===================================== */
-
-function checkCustomer(){
-
-    if(customers.length === 0){
-
-        showMessage(
-            "استنى الزبون يدخل الأول 😅"
-        );
-
-        return null;
-
-    }
-
-    return customers[0];
-
-}
-
-
-/* =====================================
-   تقديم سايب
-===================================== */
-
-function serveBulk(foodKey){
-
-    const customer =
-        checkCustomer();
-
-    if(!customer) return;
-
-
-    const order =
-        customer.order;
-
-
-    if(order.type !== "bulk"){
-
-        wrongOrder();
-
-        return;
-
-    }
-
-
-    if(order.food !== foodKey){
-
-        wrongOrder();
-
-        return;
-
-    }
-
-
-    scoopAnimation();
-
-
-    money += order.money;
-
-    served++;
-
-    rating =
-        Math.min(
-            100,
-            rating + serviceLevel
-        );
-
-
-    customers.shift();
-
-
-    let text = "";
-
-
-    if(foodKey === "falafel"){
-
-        const pieces =
-            Math.floor(
-                order.money / 5
-            ) * 4;
-
-        text =
-            `تمام! عملت ${pieces} فلافل بـ ${order.money} جنيه 🧆`;
+  const box=document.getElementById("customers");
+  box.innerHTML="";
+
+  customers.forEach(c=>{
+
+    const div=document.createElement("div");
+    div.className="customer";
+    div.id="customer-"+c.id;
+
+    let orderText="";
+
+    if(c.type==="bulk"){
+
+      if(c.key==="foul"){
+        orderText=`عايز بـ${c.money} فول<br>🥄 ${c.count} مغارف`;
+      }
+      else if(c.key==="falafel"){
+        orderText=`عايز بـ${c.money} فلافل<br>🧆 ${c.count} فلافليات`;
+      }
+      else{
+        orderText=`عايز بـ${c.money} ${foods[c.key].name}`;
+      }
 
     }else{
 
-        text =
-            `تمام! عملت ${foods[foodKey].name}
-            بـ ${order.money} جنيه 🥣`;
-
+      orderText=`عايز ${c.count} سندوتش<br>${foods[c.key].name}`;
     }
 
+    div.innerHTML=`
+      <div class="person">
+        <div class="head"></div>
+        <div class="body"></div>
+      </div>
 
-    document.getElementById(
-        "serving"
-    ).innerHTML = text;
+      <div class="order">${orderText}</div>
 
-
-    showMessage(
-        `+${order.money} جنيه 💰`
-    );
-
-
-    checkLevel();
-
-    updateStats();
-
-    renderCustomers();
-
-}
-
-
-/* =====================================
-   تقديم سندوتش
-===================================== */
-
-function serveSandwich(foodKey){
-
-    const customer =
-        checkCustomer();
-
-    if(!customer) return;
-
-
-    const order =
-        customer.order;
-
-
-    if(order.type !== "sandwich"){
-
-        wrongOrder();
-
-        return;
-
-    }
-
-
-    if(order.food !== foodKey){
-
-        wrongOrder();
-
-        return;
-
-    }
-
-
-    const price =
-        foods[foodKey].price;
-
-    const total =
-        price * order.count;
-
-
-    money += total;
-
-    served++;
-
-    rating =
-        Math.min(
-            100,
-            rating + serviceLevel
-        );
-
-
-    customers.shift();
-
-
-    document.getElementById(
-        "serving"
-    ).innerHTML = `
-
-        ✅ قدمت
-        ${order.count}
-        سندوتش
-        ${foods[foodKey].name}
-
+      <button onclick="deliver(${c.id})">
+        تسليم الطلب
+      </button>
     `;
 
-
-    showMessage(
-        `+${total} جنيه 💰`
-    );
-
-
-    checkLevel();
-
-    updateStats();
-
-    renderCustomers();
-
+    box.appendChild(div);
+  });
 }
 
+/* العميل الحالي */
 
-/* =====================================
-   الأصناف العادية
-===================================== */
+function currentCustomer(){
 
-function serveFood(foodKey){
+  if(customers.length===0){
+    toast("مفيش زبون دلوقتي");
+    return null;
+  }
 
-    const customer =
-        checkCustomer();
+  return customers[0];
+}
 
-    if(!customer) return;
+/* السايب */
 
+function bulkFood(key){
 
-    const order =
-        customer.order;
+  const c=currentCustomer();
+  if(!c) return;
 
+  if(c.type!=="bulk" || c.key!==key){
+    toast("ده مش طلب الزبون!");
+    return;
+  }
 
-    if(order.type === "bulk"){
+  if(key==="foul"){
+    scoopEffect("🥄");
+    c.servedCount++;
 
-        wrongOrder();
+    toast(`مغرفة فول ${c.servedCount}/${c.count}`);
+  }
+  else if(key==="falafel"){
+    toast("الفلافل السايبة استخدم القرطاس 🛍️");
+    return;
+  }
+  else{
+    c.servedCount=c.count;
+    scoopEffect("🥣");
+    toast("اتجهز");
+  }
 
-        return;
+  renderCustomers();
+}
 
+/* قرطاس الفلافل */
+
+let bagCustomerId=null;
+let bagCount=0;
+
+function useBag(){
+
+  const c=currentCustomer();
+  if(!c) return;
+
+  if(c.type!=="bulk" || c.key!=="falafel"){
+    toast("القرطاس للفلافل السايبة فقط");
+    return;
+  }
+
+  if(bagCustomerId!==c.id){
+    bagCustomerId=c.id;
+    bagCount=0;
+  }
+
+  if(bagCount>=c.count){
+    toast("القرطاس اكتمل!");
+    return;
+  }
+
+  bagCount++;
+  c.servedCount=bagCount;
+
+  document.getElementById("bagCount").textContent=bagCount;
+
+  document.getElementById("bagButton")
+    .classList.add("bulk-active");
+
+  scoopEffect("🧆");
+
+  toast(`${bagCount} / ${c.count}`);
+
+  if(bagCount===c.count){
+    setTimeout(()=>{
+      toast("القرطاس جاهز للتسليم ✅");
+    },150);
+  }
+
+  renderCustomers();
+}
+
+/* الساندوتشات */
+
+function sandwich(key){
+
+  const c=currentCustomer();
+  if(!c) return;
+
+  if(c.type!=="sandwich" || c.key!==key){
+    toast("ده مش طلب الزبون!");
+    return;
+  }
+
+  if(c.servedCount>=c.count){
+    toast("الطلب اكتمل");
+    return;
+  }
+
+  c.servedCount++;
+
+  scoopEffect("🥙");
+
+  toast(
+    `سندوتش ${c.servedCount}/${c.count}`
+  );
+
+  renderCustomers();
+}
+
+/* تسليم */
+
+function deliver(id){
+
+  const c=customers.find(x=>x.id===id);
+
+  if(!c) return;
+
+  if(c.servedCount<c.count){
+    toast("الطلب لسه ناقص ❌");
+    return;
+  }
+
+  const el=document.getElementById("customer-"+id);
+
+  if(el){
+    el.classList.add("done");
+  }
+
+  money+=c.money;
+  served++;
+
+  if(served%10===0){
+    level++;
+    toast("🎉 وصلت لفل جديد!");
+  }else{
+    toast("✅ الطلب اتسلّم!");
+  }
+
+  customers=customers.filter(x=>x.id!==id);
+
+  bagCustomerId=null;
+  bagCount=0;
+
+  document.getElementById("bagCount").textContent="0";
+  document.getElementById("bagButton")
+    .classList.remove("bulk-active");
+
+  save();
+  updateStats();
+
+  setTimeout(renderCustomers,350);
+}
+
+/* المؤثر */
+
+function scoopEffect(symbol){
+
+  const e=document.createElement("div");
+  e.className="scoop";
+  e.textContent=symbol;
+
+  e.style.left=(40+Math.random()*20)+"%";
+  e.style.top="55%";
+
+  document.body.appendChild(e);
+
+  setTimeout(()=>e.remove(),600);
+}
+
+/* تطويرات */
+
+function upgrade(type){
+
+  let cost;
+
+  if(type==="capacity"){
+    cost=30*capacityLevel;
+
+    if(money<cost){
+      toast("الفلوس مش كفاية 💰");
+      return;
     }
 
+    money-=cost;
+    capacityLevel++;
+    toast("🥘 المخزون اتطور!");
+  }
 
-    if(order.food !== foodKey){
+  if(type==="speed"){
+    cost=40*speedLevel;
 
-        wrongOrder();
-
-        return;
-
+    if(money<cost){
+      toast("الفلوس مش كفاية 💰");
+      return;
     }
 
+    money-=cost;
+    speedLevel++;
+    toast("⚡ المطبخ بقى أسرع!");
+  }
 
-    money += foods[foodKey].price;
+  if(type==="service"){
+    cost=50*serviceLevel;
 
-    served++;
+    if(money<cost){
+      toast("الفلوس مش كفاية 💰");
+      return;
+    }
 
-    rating =
-        Math.min(
-            100,
-            rating + serviceLevel
-        );
+    money-=cost;
+    serviceLevel++;
+    toast("👨‍🍳 الخدمة بقت أسرع!");
+  }
 
-
-    customers.shift();
-
-
-    document.getElementById(
-        "serving"
-    ).innerHTML =
-        `✅ قدمت ${foods[foodKey].name}`;
-
-
-    showMessage(
-        `+${foods[foodKey].price} جنيه 💰`
-    );
-
-
-    checkLevel();
-
-    updateStats();
-
-    renderCustomers();
-
+  save();
+  updateStats();
 }
 
+/* رسالة */
 
-/* =====================================
-   طلب غلط
-===================================== */
+function toast(text){
 
-function wrongOrder(){
+  const old=document.querySelector(".toast");
+  if(old) old.remove();
 
-    rating =
-        Math.max(
-            0,
-            rating - 5
-        );
+  const t=document.createElement("div");
+  t.className="toast";
+  t.textContent=text;
 
+  document.body.appendChild(t);
 
-    showMessage(
-        "❌ ده مش الطلب اللي الزبون طلبه"
-    );
-
-
-    updateStats();
-
+  setTimeout(()=>t.remove(),900);
 }
 
+/* تشغيل اللعبة */
 
-/* =====================================
-   الوقت
-===================================== */
+updateStats();
+
+for(let i=0;i<3;i++){
+  setTimeout(createCustomer,i*250);
+}
 
 setInterval(()=>{
-
-    let changed = false;
-
-
-    customers.forEach(customer=>{
-
-        customer.wait -=
-            2 + speedLevel * 0.2;
-
-
-        if(customer.wait <= 0){
-
-            customer.wait = 0;
-
-            rating =
-                Math.max(
-                    0,
-                    rating - 10
-                );
-
-            showMessage(
-                `${customer.name}
-                مشي من غير طلب 😢`
-            );
-
-            changed = true;
-
-        }
-
-    });
-
-
-    customers =
-        customers.filter(
-            customer =>
-                customer.wait > 0
-        );
-
-
-    renderCustomers();
-
-    updateStats();
-
-
-},1000);
-
-
-/* =====================================
-   دخول الزباين تلقائي
-===================================== */
-
-function automaticCustomers(){
-
-    if(customers.length < capacity){
-
-        addCustomer();
-
-    }
-
-}
-
-
-/* أول زبون */
-
-setTimeout(()=>{
-
-    addCustomer();
-
-},1000);
-
-
-/* كل فترة يدخل زبون */
-
-setInterval(()=>{
-
-    automaticCustomers();
-
+  createCustomer();
 },3500);
 
-
-/* =====================================
-   المستويات
-===================================== */
-
-function checkLevel(){
-
-    const goal =
-        level * 5;
-
-
-    if(served >= goal){
-
-        level++;
-
-
-        capacity++;
-
-
-        showMessage(
-            `🎉 وصلت للمستوى ${level}!`
-        );
-
-    }
-
-
-    document.getElementById(
-        "level"
-    ).innerText = level;
-
-
-    document.getElementById(
-        "goal"
-    ).innerText =
-        level * 5;
-
-}
-
-
-/* =====================================
-   تطوير السعة
-===================================== */
-
-function upgradeCapacity(){
-
-    const cost =
-        level * 100;
-
-
-    if(money < cost){
-
-        showMessage(
-            `محتاج ${cost} جنيه 💰`
-        );
-
-        return;
-
-    }
-
-
-    money -= cost;
-
-    capacity++;
-
-
-    showMessage(
-        "👥 زودنا مكان لزبون جديد!"
-    );
-
-
-    updateStats();
-
-}
-
-
-/* =====================================
-   تطوير سرعة المطبخ
-===================================== */
-
-function upgradeSpeed(){
-
-    const cost =
-        120 + speedLevel * 80;
-
-
-    if(money < cost){
-
-        showMessage(
-            `محتاج ${cost} جنيه 💰`
-        );
-
-        return;
-
-    }
-
-
-    money -= cost;
-
-    speedLevel++;
-
-
-    showMessage(
-        "🥄 القدرة بقت أسرع!"
-    );
-
-
-    updateStats();
-
-}
-
-
-/* =====================================
-   تطوير الخدمة
-===================================== */
-
-function upgradeService(){
-
-    const cost =
-        150 + serviceLevel * 100;
-
-
-    if(money < cost){
-
-        showMessage(
-            `محتاج ${cost} جنيه 💰`
-        );
-
-        return;
-
-    }
-
-
-    money -= cost;
-
-    serviceLevel++;
-
-
-    showMessage(
-        "⭐ رضا الزباين بقى أحسن!"
-    );
-
-
-    updateStats();
-
-}
-
-
-/* =====================================
-   تحديث البيانات
-===================================== */
-
-function updateStats(){
-
-    document.getElementById(
-        "money"
-    ).innerText = money;
-
-
-    document.getElementById(
-        "rating"
-    ).innerText =
-        Math.round(rating);
-
-
-    document.getElementById(
-        "served"
-    ).innerText = served;
-
-
-    document.getElementById(
-        "level"
-    ).innerText = level;
-
-
-    document.getElementById(
-        "goal"
-    ).innerText =
-        level * 5;
-
-
-    document.getElementById(
-        "capacityText"
-    ).innerText =
-        capacity;
-
-}
-
-
-/* =====================================
-   الحفظ
-===================================== */
-
-function saveGame(){
-
-    const data = {
-
-        money,
-        rating,
-        served,
-        level,
-        capacity,
-        speedLevel,
-        serviceLevel
-
-    };
-
-
-    localStorage.setItem(
-        "restaurantGame",
-        JSON.stringify(data)
-    );
-
-}
-
-
-setInterval(
-    saveGame,
-    3000
-);
-
-
-/* =====================================
-   تحميل
-===================================== */
-
-function loadGame(){
-
-    const saved =
-        localStorage.getItem(
-            "restaurantGame"
-        );
-
-
-    if(!saved) return;
-
-
-    try{
-
-        const data =
-            JSON.parse(saved);
-
-
-        money =
-            data.money ?? 100;
-
-        rating =
-            data.rating ?? 100;
-
-        served =
-            data.served ?? 0;
-
-        level =
-            data.level ?? 1;
-
-        capacity =
-            data.capacity ?? 3;
-
-        speedLevel =
-            data.speedLevel ?? 1;
-
-        serviceLevel =
-            data.serviceLevel ?? 1;
-
-
-    }catch(e){
-
-        console.log(e);
-
-    }
-
-
-    updateStats();
-
-}
-
-
-/* =====================================
-   إعادة
-===================================== */
-
-function resetGame(){
-
-    if(
-        !confirm(
-            "متأكد إنك عايز تبدأ من الأول؟"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        "restaurantGame"
-    );
-
-
-    customers = [];
-
-    money = 100;
-
-    rating = 100;
-
-    served = 0;
-
-    level = 1;
-
-    capacity = 3;
-
-    speedLevel = 1;
-
-    serviceLevel = 1;
-
-
-    updateStats();
-
-    renderCustomers();
-
-
-    showMessage(
-        "🎮 بدأنا لعبة جديدة!"
-    );
-
-
-    setTimeout(
-        addCustomer,
-        700
-    );
-
-}
-
-
-/* =====================================
-   البداية
-===================================== */
-
-loadGame();
-
-renderCustomers();
-
+/* حفظ تلقائي */
+setInterval(save,5000);
 </script>
 
 </body>
-    </html>
+              </html>
